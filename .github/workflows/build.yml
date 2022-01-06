@@ -1,0 +1,48 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - master
+      - developer
+  pull_request:
+    branches-ignore:
+      - master
+      - developer
+
+jobs:
+  build_apk:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+#        with:
+#          token: ${{ secrets.API_TOKEN_GITHUB }}
+      - name: Setup Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 12.x
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v1
+        with:
+          flutter-version: 2.8.1
+#      - name: Decoding android/key.properties
+#        run: echo "keyPassword=${{ secrets.KEYPROP_PROD }}" > android/key.properties
+#      - name: Prepare Git token
+#        run: |
+#          echo "https://nostressbot:${{ secrets.API_TOKEN_GITHUB }}@github.com" > /tmp/.gitcred
+#          git config --global credential.helper 'store --file /tmp/.gitcred'
+      - name: Install Flutter dependencies
+        run: flutter pub get
+      - name: Run code generation
+        run: flutter pub run build_runner build
+      - name: Format files
+        run: flutter format --set-exit-if-changed .
+      - name: Analyze files
+        run: flutter analyze .
+      - name: Build the APK
+        run: flutter build apk --release
+#      - name: Upload artifact
+#        run: |
+#          sudo apt install curl
+#          curl -F "file=@build/app/outputs/apk/release/app-release.apk" -F "description=Example project, commit $(git rev-list --parents -n 1 HEAD)" -F "token=${{ secrets.TOKEN_TGCI }}" -f https://tgci.nostress.dev/upload
