@@ -1,13 +1,11 @@
 import 'package:crnt_task/controllers/main_page_controller.dart';
-import 'package:crnt_task/utils/cool_stuff.dart';
-import 'package:crnt_task/widgets/common_widget.dart';
+import 'package:crnt_task/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
-  static const String route = '/main';
 
   @override
   State<StatefulWidget> createState() => _MainPageState();
@@ -45,13 +43,15 @@ class _MainPageState extends State<MainPage> {
             children: [
               Align(
                 alignment: Alignment.bottomRight,
-                  child: Image.asset('assets/title_img.png')),
+                child: Image.asset('assets/title_img.png'),
+              ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SvgPicture.asset('assets/logo.svg'),
                   const Spacer(),
-                  const Text('Current\nagency',
+                  const Text(
+                    'Current\nagency',
                     style: TextStyle(
                       inherit: false,
                       height: 0.75,
@@ -60,22 +60,33 @@ class _MainPageState extends State<MainPage> {
                     ),
                   ),
                   const SizedBox(height: 40),
-                  Text('поможем вашему бизнесу в digital-развитии: \nот '
-                      'создания бренда до полного цикла \nпродакшена',
+                  Text(
+                    'поможем вашему бизнесу в digital-развитии: \nот '
+                    'создания бренда до полного цикла \nпродакшена',
                     style: Theme.of(context).textTheme.bodyText1,
                   ),
                   const SizedBox(height: 24),
-                  Container(
-                    alignment: Alignment.center,
-                    height: 51,
-                    width: 144,
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.secondary,
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: Text(
-                      'Войти',
-                      style: Theme.of(context).textTheme.button,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const HomePage(),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      alignment: Alignment.center,
+                      height: 51,
+                      width: 144,
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.secondary,
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      child: Text(
+                        'Войти',
+                        style: Theme.of(context).textTheme.button,
+                      ),
                     ),
                   ),
                 ],
