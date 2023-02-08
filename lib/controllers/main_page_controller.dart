@@ -1,5 +1,5 @@
-import 'package:example_project_mobile/config/environment.dart';
-import 'package:example_project_mobile/repositories/strange_repository.dart';
+import 'package:crnt_task/config/environment.dart';
+import 'package:crnt_task/repositories/strange_repository.dart';
 import 'package:get/get.dart';
 
 class MainPageController extends GetxController {
