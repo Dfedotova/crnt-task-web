@@ -110,5 +110,8 @@ ThemeData themeLight = _themeLight.copyWith(
     scrim: Colors.black,
     secondary: Color(0xffE6FE52),
     tertiary: Color(0xff74A5AA),
+    secondaryContainer: Color(0xffEEEEEE),
+    shadow: Color(0xff757575),
+    surface: Color(0xff9C9C9C),
   ),
 );

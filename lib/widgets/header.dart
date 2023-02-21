@@ -1,4 +1,6 @@
-import 'package:crnt_task/widgets/active_circle_button.dart';
+import 'package:crnt_task/widgets/circle_button_active.dart';
+import 'package:crnt_task/widgets/circle_button_inactive.dart';
+import 'package:crnt_task/widgets/search_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -21,9 +23,15 @@ class HeaderWidget extends StatelessWidget {
         child: Row(
           children: [
             const ActiveCircleButton(image: 'menu.svg'),
-            const SizedBox(width: 51),
-            SvgPicture.asset('assets/logo.svg'),
+            const SizedBox(width: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              child: SvgPicture.asset('assets/logo.svg'),
+            ),
             const Spacer(),
+            const SearchWidget(),
+            const SizedBox(width: 20),
+            const InactiveCircleButton(image: 'notification.svg'),
           ],
         ),
       ),

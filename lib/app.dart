@@ -1,10 +1,14 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:crnt_task/navigation/router.gr.dart';
+import 'package:crnt_task/pages/layout_template.dart';
 import 'package:crnt_task/repositories/strange_repository.dart';
 import 'package:crnt_task/themes/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
+
+import 'locator.dart';
+import 'navigation/navigation_service.dart';
+import 'navigation/route_names.dart';
+import 'navigation/router.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -25,23 +29,16 @@ class App extends StatelessWidget {
 
 class TaskTrackerApp extends StatelessWidget {
   TaskTrackerApp({Key? key}) : super(key: key);
-  final _appRouter = AppRouter();
 
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
     return MaterialApp(
-      home: Scaffold(
-        body: MaterialApp.router(
-          debugShowCheckedModeBanner: false,
-          routerDelegate: AutoRouterDelegate(
-            _appRouter,
-            navigatorObservers: () => [AutoRouteObserver()],
-          ),
-          routeInformationParser: _appRouter.defaultRouteParser(),
-          theme: themeProvider.currentTheme,
-        ),
-      ),
+      theme: themeProvider.currentTheme,
+      builder: (context, child) => LayoutTemplate(child: child),
+      navigatorKey: locator<NavigationService>().navigatorKey,
+      onGenerateRoute: generateRoute,
+      initialRoute: MainRoute,
     );
   }
 }

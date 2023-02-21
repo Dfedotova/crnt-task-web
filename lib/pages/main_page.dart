@@ -1,8 +1,14 @@
 import 'package:crnt_task/controllers/main_page_controller.dart';
+import 'package:crnt_task/locator.dart';
+import 'package:crnt_task/navigation/navigation_service.dart';
+import 'package:crnt_task/navigation/route_names.dart';
 import 'package:crnt_task/pages/home_page.dart';
+import 'package:crnt_task/pages/layout_template.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+
+import '../navigation/router.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -68,12 +74,7 @@ class _MainPageState extends State<MainPage> {
                   const SizedBox(height: 24),
                   GestureDetector(
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const HomePage(),
-                        ),
-                      );
+                      locator<NavigationService>().navigateTo(HomeRoute);
                     },
                     child: Container(
                       alignment: Alignment.center,
