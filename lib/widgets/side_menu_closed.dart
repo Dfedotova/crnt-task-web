@@ -42,6 +42,29 @@ class SideMenuClosed extends StatelessWidget {
               child: const InactiveCircleButton(image: 'settings.svg'),
             ),
             const Spacer(),
+            Stack(
+              children: [
+                const SizedBox(
+                  width: 40,
+                  height: 40,
+                  child: CircleAvatar(
+                    backgroundImage: AssetImage('assets/example_photo.jpeg'),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 27),
+                  child: Container(
+                    height: 7,
+                    width: 7,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Theme.of(context).colorScheme.secondary,
+                    ),
+                  ),
+                )
+              ],
+            ),
+            const SizedBox(height: 10),
             const ActiveCircleButton(image: 'user.svg'),
           ],
         ),
