@@ -1,4 +1,4 @@
-import 'package:crnt_task/controllers/notification_controller.dart';
+import 'package:crnt_task/controllers/dialogue_windows_controller.dart';
 import 'package:crnt_task/widgets/header.dart';
 import 'package:crnt_task/widgets/notifications.dart';
 import 'package:crnt_task/widgets/side_menu_closed.dart';

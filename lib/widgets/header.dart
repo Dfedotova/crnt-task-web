@@ -1,4 +1,4 @@
-import 'package:crnt_task/controllers/notification_controller.dart';
+import 'package:crnt_task/controllers/dialogue_windows_controller.dart';
 import 'package:crnt_task/widgets/circle_button_active.dart';
 import 'package:crnt_task/widgets/circle_button_inactive.dart';
 import 'package:crnt_task/widgets/search_widget.dart';

@@ -1,4 +1,4 @@
-import 'package:crnt_task/controllers/notification_controller.dart';
+import 'package:crnt_task/controllers/dialogue_windows_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
