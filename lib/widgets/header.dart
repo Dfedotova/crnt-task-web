@@ -1,3 +1,4 @@
+import 'package:crnt_task/controllers/notification_controller.dart';
 import 'package:crnt_task/widgets/circle_button_active.dart';
 import 'package:crnt_task/widgets/circle_button_inactive.dart';
 import 'package:crnt_task/widgets/search_widget.dart';
@@ -31,7 +32,12 @@ class HeaderWidget extends StatelessWidget {
             const Spacer(),
             const SearchWidget(),
             const SizedBox(width: 20),
-            const InactiveCircleButton(image: 'notification.svg'),
+            GestureDetector(
+              onTap: () => {
+                DialogueWindows.isNotificationsOpened.value = true,
+              },
+              child: const InactiveCircleButton(image: 'notification.svg'),
+            ),
           ],
         ),
       ),

@@ -1,10 +1,9 @@
-import 'package:crnt_task/locator.dart';
-import 'package:crnt_task/navigation/navigation_service.dart';
-import 'package:crnt_task/navigation/route_names.dart';
-import 'package:crnt_task/navigation/router.dart';
+import 'package:crnt_task/controllers/notification_controller.dart';
 import 'package:crnt_task/widgets/header.dart';
+import 'package:crnt_task/widgets/notifications.dart';
 import 'package:crnt_task/widgets/side_menu_closed.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 class LayoutTemplate extends StatelessWidget {
   const LayoutTemplate({Key? key, required this.child}) : super(key: key);
@@ -15,13 +14,22 @@ class LayoutTemplate extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
-      body: Stack(
-        clipBehavior: Clip.none,
-        children: [
-          child!,
-          const SideMenuClosed(),
-          const HeaderWidget(),
-        ],
+      body: Obx(
+        () => Stack(
+          clipBehavior: Clip.none,
+          children: [
+            child!,
+            const SideMenuClosed(),
+            const HeaderWidget(),
+            if (DialogueWindows.isNotificationsOpened.value)
+              const Opacity(
+                opacity: 0.6,
+                child: ModalBarrier(dismissible: false, color: Colors.black),
+              ),
+            if (DialogueWindows.isNotificationsOpened.value)
+              const NotificationsWidget(),
+          ],
+        ),
       ),
     );
   }
