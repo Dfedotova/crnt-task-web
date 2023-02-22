@@ -23,7 +23,7 @@ class LayoutTemplate extends StatelessWidget {
             const HeaderWidget(),
             if (DialogueWindows.isNotificationsOpened.value)
               const Opacity(
-                opacity: 0.6,
+                opacity: 0.2,
                 child: ModalBarrier(dismissible: false, color: Colors.black),
               ),
             if (DialogueWindows.isNotificationsOpened.value)
