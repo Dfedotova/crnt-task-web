@@ -10,7 +10,7 @@ class ThemeProvider extends ChangeNotifier {
   ThemeData get currentTheme => _currentTheme;
   CustomBrightness get brightness => _brightness;
 
-  toggle(CustomBrightness brightness){
+  void toggle(CustomBrightness brightness){
     if(brightness == CustomBrightness.light){
       _brightness = CustomBrightness.light;
       _currentTheme = themeLight;
