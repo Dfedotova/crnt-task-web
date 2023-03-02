@@ -62,9 +62,10 @@ class _MainPageState extends State<MainPage> {
                     ),
                   ),
                   const SizedBox(height: 40),
-                  const Text(
+                  Text(
                     'поможем вашему бизнесу в digital-развитии: \nот '
                     'создания бренда до полного цикла \nпродакшена',
+                    style: Theme.of(context).textTheme.bodyText1,
                   ),
                   const SizedBox(height: 24),
                   GestureDetector(
@@ -79,7 +80,10 @@ class _MainPageState extends State<MainPage> {
                         color: Theme.of(context).colorScheme.secondary,
                         borderRadius: BorderRadius.circular(16),
                       ),
-                      child: const Text('Войти'),
+                      child: Text(
+                        'Войти',
+                        style: Theme.of(context).textTheme.button,
+                      ),
                     ),
                   ),
                 ],
