@@ -1,3 +1,4 @@
+import 'package:crnt_task/widgets/task_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -43,14 +44,71 @@ class _TasksPageState extends State<TasksPage> {
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
+  Widget _titleTextWidget(String title, int taskCount) {
+    return RichText(
+      text: TextSpan(
+        text: '$title ',
+        style: TextStyle(
+          fontSize: 20,
+          height: 1.2,
+          fontWeight: FontWeight.w600,
+          fontFamily: 'Montserrat',
+          color: Theme.of(context).colorScheme.scrim,
+        ),
+        children: [
+          TextSpan(
+            text: '($taskCount)',
+            style: TextStyle(
+              fontSize: 20,
+              height: 1.2,
+              fontWeight: FontWeight.w600,
+              fontFamily: 'Montserrat',
+              color: Theme.of(context).colorScheme.shadow,
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget _taskColumnWidget(String title, int taskCount) {
     return Padding(
-      padding: const EdgeInsets.only(left: 100, top: 100),
+      padding: EdgeInsets.only(left: (title == 'Бэклог') ? 0 : 22, right: 22),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
+          if (title == 'Бэклог')
+            Row(
+              children: [
+                _titleTextWidget(title, taskCount),
+                const SizedBox(width: 114),
+                SvgPicture.asset('assets/add_task.svg'),
+              ],
+            )
+          else
+            _titleTextWidget(title, taskCount),
+          Column(
+            children: List.generate(
+              taskCount,
+              (index) => const Padding(
+                padding: EdgeInsets.symmetric(vertical: 10),
+                child: TaskCard(),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 100, top: 100),
+          child: Row(
             children: [
               Container(
                 height: 45,
@@ -101,8 +159,30 @@ class _TasksPageState extends State<TasksPage> {
               _filterWidget('Тип задачи', 'Все типы'),
             ],
           ),
-        ],
-      ),
+        ),
+        const SizedBox(height: 40),
+        Expanded(
+          child: ListView(
+            primary: false,
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
+            children: [
+              Row(
+                children: [
+                  const SizedBox(width: 100),
+                  _taskColumnWidget('Бэклог', 4),
+                  _taskColumnWidget('В процессе', 1),
+                  _taskColumnWidget('Сделано', 1),
+                  _taskColumnWidget('На проверке', 1),
+                  _taskColumnWidget('На согласовании', 2),
+                  _taskColumnWidget('Согласовано', 1),
+                  _taskColumnWidget('Архив', 3),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

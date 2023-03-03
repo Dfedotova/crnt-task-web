@@ -107,6 +107,7 @@ ThemeData themeLight = _themeLight.copyWith(
   colorScheme: const ColorScheme.light(
     background: Color(0xffC4C4C4),
     primary: Colors.white,
+    primaryContainer: Color(0xFFE2E2E2),
     scrim: Colors.black,
     secondary: Color(0xffE6FE52),
     tertiary: Color(0xff74A5AA),
