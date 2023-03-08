@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:crnt_task/controllers/dialogue_windows_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -76,49 +78,61 @@ class NotificationsWidget extends StatelessWidget {
       alignment: Alignment.topRight,
       child: Padding(
         padding: const EdgeInsets.only(top: 65, right: 20),
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-          height: 620,
-          width: 400,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30),
-            color: Theme.of(context).colorScheme.secondaryContainer,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
+        child: ClipRect(
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+              height: 620,
+              width: 400,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+                color: Theme.of(context).colorScheme.primary.withOpacity(0.25),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Row(
+                    children: [
+                      const Spacer(),
+                      GestureDetector(
+                        onTap: () => {
+                          DialogueWindows.isNotificationsOpened.value = false,
+                        },
+                        child: SvgPicture.asset(
+                          'assets/close.svg',
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    'Уведомления (5)',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  _notificationMessage(context),
+                  _notificationMessage(context),
+                  _notificationMessage(context),
                   const Spacer(),
-                  GestureDetector(
-                    onTap: () => {
-                      DialogueWindows.isNotificationsOpened.value = false,
-                    },
-                    child: SvgPicture.asset('assets/close.svg'),
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: SizedBox(
+                      width: 30,
+                      child: SvgPicture.asset(
+                        'assets/trash.svg',
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                    ),
                   ),
                 ],
               ),
-              const SizedBox(height: 10),
-              const Text(
-                'Уведомления (5)',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              const SizedBox(height: 20),
-              _notificationMessage(context),
-              _notificationMessage(context),
-              _notificationMessage(context),
-              const Spacer(),
-              Align(
-                alignment: Alignment.bottomRight,
-                child: SizedBox(
-                  width: 30,
-                  child: SvgPicture.asset('assets/trash.svg'),
-                ),
-              ),
-            ],
+            ),
           ),
         ),
       ),

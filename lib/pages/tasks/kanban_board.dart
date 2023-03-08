@@ -1,6 +1,8 @@
-import 'package:crnt_task/widgets/tasks/task_card_widget.dart';
+import 'package:crnt_task/widgets/tasks/task_kanban_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+
+import '../../controllers/dialogue_windows_controller.dart';
 
 class KanbanBoard extends StatelessWidget {
   const KanbanBoard({Key? key, required this.context}) : super(key: key);
@@ -44,7 +46,12 @@ class KanbanBoard extends StatelessWidget {
               children: [
                 _titleTextWidget(title, taskCount),
                 const SizedBox(width: 114),
-                SvgPicture.asset('assets/add_task.svg'),
+                GestureDetector(
+                  onTap: () => {
+                    DialogueWindows.isCardOpened.value = true,
+                  },
+                  child: SvgPicture.asset('assets/add_task.svg'),
+                ),
               ],
             )
           else
@@ -52,9 +59,14 @@ class KanbanBoard extends StatelessWidget {
           Column(
             children: List.generate(
               taskCount,
-              (index) => const Padding(
-                padding: EdgeInsets.symmetric(vertical: 10),
-                child: TaskCard(),
+              (index) => Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: GestureDetector(
+                  onTap: () => {
+                    DialogueWindows.isCardOpened.value = true,
+                  },
+                  child: const TaskKanban(),
+                ),
               ),
             ),
           ),

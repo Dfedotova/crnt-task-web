@@ -2,8 +2,8 @@ import 'package:crnt_task/widgets/active_skill_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class TaskLine extends StatelessWidget {
-  const TaskLine({Key? key}) : super(key: key);
+class TaskMenu extends StatelessWidget {
+  const TaskMenu({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

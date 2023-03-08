@@ -5,6 +5,8 @@ import 'package:crnt_task/widgets/side_menu_closed.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
+import '../widgets/tasks/task_card_widget.dart';
+
 class LayoutTemplate extends StatelessWidget {
   const LayoutTemplate({Key? key, required this.child}) : super(key: key);
 
@@ -21,13 +23,18 @@ class LayoutTemplate extends StatelessWidget {
             child!,
             const SideMenuClosed(),
             const HeaderWidget(),
-            if (DialogueWindows.isNotificationsOpened.value)
-              const Opacity(
-                opacity: 0.2,
-                child: ModalBarrier(dismissible: false, color: Colors.black),
+            if (DialogueWindows.isNotificationsOpened.value ||
+                DialogueWindows.isCardOpened.value)
+              Opacity(
+                opacity: 0.4,
+                child: ModalBarrier(
+                  dismissible: false,
+                  color: Theme.of(context).colorScheme.scrim,
+                ),
               ),
             if (DialogueWindows.isNotificationsOpened.value)
               const NotificationsWidget(),
+            if (DialogueWindows.isCardOpened.value) const TaskCard(),
           ],
         ),
       ),

@@ -114,5 +114,6 @@ ThemeData themeLight = _themeLight.copyWith(
     secondaryContainer: Color(0xffEEEEEE),
     shadow: Color(0xff757575),
     surface: Color(0xff9C9C9C),
+    outline: Color(0xff4A4A4A),
   ),
 );
