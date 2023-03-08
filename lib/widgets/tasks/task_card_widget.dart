@@ -19,8 +19,8 @@ class TaskCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            children: [
-              const Text(
+            children: const [
+              Text(
                 'ID-1: Sample task',
                 style: TextStyle(
                   fontSize: 14,
@@ -28,8 +28,7 @@ class TaskCard extends StatelessWidget {
                   height: 1.2,
                 ),
               ),
-              const Spacer(),
-              SvgPicture.asset('assets/more.svg'),
+              Spacer(),
             ],
           ),
           const SizedBox(height: 15),
