@@ -162,12 +162,12 @@ class _TasksPageState extends State<TasksPage> {
         ),
         const SizedBox(height: 40),
         Expanded(
-          child: ListView(
+          child: SingleChildScrollView(
             primary: false,
-            shrinkWrap: true,
             scrollDirection: Axis.horizontal,
-            children: [
-              Row(
+            child: SingleChildScrollView(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(width: 100),
                   _taskColumnWidget('Бэклог', 4),
@@ -179,7 +179,7 @@ class _TasksPageState extends State<TasksPage> {
                   _taskColumnWidget('Архив', 3),
                 ],
               ),
-            ],
+            ),
           ),
         ),
       ],

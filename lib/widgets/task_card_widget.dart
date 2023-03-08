@@ -39,7 +39,6 @@ class TaskCard extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Row(
-            //crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               SvgPicture.asset('assets/clock.svg'),
               const SizedBox(width: 10),
