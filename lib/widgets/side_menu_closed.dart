@@ -38,7 +38,12 @@ class SideMenuClosed extends StatelessWidget {
               child: const InactiveCircleButton(image: 'task.svg'),
             ),
             const SizedBox(height: 10),
-            const InactiveCircleButton(image: 'graph.svg'),
+            GestureDetector(
+              onTap: () {
+                locator<NavigationService>().navigateTo(AnalyticsRoute);
+              },
+              child: const InactiveCircleButton(image: 'graph.svg'),
+            ),
             const SizedBox(height: 10),
             GestureDetector(
               onTap: () {
