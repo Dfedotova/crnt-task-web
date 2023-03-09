@@ -101,7 +101,6 @@ class _TasksPageState extends State<TasksPage> {
                 const SizedBox(width: 35),
                 _filterWidget('Сотрудники', 'Все сотрудники'),
                 _filterWidget('Приоритет', 'Все задачи'),
-                _filterWidget('Спринт', 'Все спринты'),
                 _filterWidget('Направление', 'Все направления'),
                 _filterWidget('Статус', 'Все статусы'),
                 _filterWidget('Тип задачи', 'Все типы'),
