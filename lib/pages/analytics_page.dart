@@ -1,3 +1,4 @@
+import 'package:crnt_task/widgets/filter_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -20,28 +21,28 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
   List<DataRow> rows = [
     DataRow(
       cells: [
-        DataCell(Text('Иванов Иван Иванович')),
-        DataCell(Text('DSGN')),
-        DataCell(Text('1.8')),
-        DataCell(Text('130 000')),
+        const DataCell(Text('Иванов Иван Иванович')),
+        const DataCell(Text('DSGN')),
+        const DataCell(Text('1.8')),
+        const DataCell(Text('130 000')),
         DataCell(SvgPicture.asset('assets/edit.svg')),
       ],
     ),
     DataRow(
       cells: [
-        DataCell(Text('Петров Александр Иванович')),
-        DataCell(Text('JVDVP')),
-        DataCell(Text('2.5')),
-        DataCell(Text('50 000')),
+        const DataCell(Text('Петров Александр Иванович')),
+        const DataCell(Text('JVDVP')),
+        const DataCell(Text('2.5')),
+        const DataCell(Text('50 000')),
         DataCell(SvgPicture.asset('assets/edit.svg')),
       ],
     ),
     DataRow(
       cells: [
-        DataCell(Text('Харитонова Мария Витальевна')),
-        DataCell(Text('PM')),
-        DataCell(Text('0.8')),
-        DataCell(Text('60 000')),
+        const DataCell(Text('Харитонова Мария Витальевна')),
+        const DataCell(Text('PM')),
+        const DataCell(Text('0.8')),
+        const DataCell(Text('60 000')),
         DataCell(SvgPicture.asset('assets/edit.svg')),
       ],
     ),
@@ -51,19 +52,41 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(100),
-      child: DataTable(
-        columns: columns,
-        rows: rows,
-        dataTextStyle: const TextStyle(
-          fontFamily: 'Montserrat',
-          fontSize: 14,
-          fontWeight: FontWeight.w400,
-        ),
-        headingTextStyle: const TextStyle(
-          fontFamily: 'Montserrat',
-          fontSize: 16,
-          fontWeight: FontWeight.w600,
-        ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: const [
+              FilterWidget(
+                title: 'Сотрудники',
+                filter: 'Все сотрудники',
+              ),
+              FilterWidget(
+                title: 'Время',
+                filter: 'Все время',
+              ),
+              FilterWidget(
+                title: 'Направление',
+                filter: 'Все направления',
+              ),
+            ],
+          ),
+          const SizedBox(height: 60),
+          DataTable(
+            columns: columns,
+            rows: rows,
+            dataTextStyle: const TextStyle(
+              fontFamily: 'Montserrat',
+              fontSize: 14,
+              fontWeight: FontWeight.w400,
+            ),
+            headingTextStyle: const TextStyle(
+              fontFamily: 'Montserrat',
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ],
       ),
     );
   }
