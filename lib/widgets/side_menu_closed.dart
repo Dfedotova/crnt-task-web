@@ -5,8 +5,15 @@ import 'package:crnt_task/widgets/circle_button_active.dart';
 import 'package:crnt_task/widgets/circle_button_inactive.dart';
 import 'package:flutter/material.dart';
 
-class SideMenuClosed extends StatelessWidget {
+class SideMenuClosed extends StatefulWidget {
   const SideMenuClosed({Key? key}) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() => _SideMenuClosedState();
+}
+
+class _SideMenuClosedState extends State<StatefulWidget> {
+  int checkInt = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -24,32 +31,48 @@ class SideMenuClosed extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 120),
-            GestureDetector(
-              onTap: () {
-                locator<NavigationService>().navigateTo(HomeRoute);
+            Element(
+              check: 0,
+              onPressed: () {
+                setState(() {
+                  checkInt = 0;
+                });
               },
-              child: const ActiveCircleButton(image: 'home.svg'),
+              count: checkInt,
+              name: 'Home',
             ),
             const SizedBox(height: 10),
-            GestureDetector(
-              onTap: () {
-                locator<NavigationService>().navigateTo(TasksRoute);
+            Element(
+              check: 1,
+              onPressed: () {
+                setState(() {
+                  checkInt = 1;
+                });
               },
-              child: const InactiveCircleButton(image: 'task.svg'),
+              count: checkInt,
+              name: 'Tasks',
             ),
             const SizedBox(height: 10),
-            GestureDetector(
-              onTap: () {
-                locator<NavigationService>().navigateTo(AnalyticsRoute);
+            Element(
+              check: 2,
+              onPressed: () {
+                setState(() {
+                  checkInt = 2;
+                });
               },
-              child: const InactiveCircleButton(image: 'graph.svg'),
+              count: checkInt,
+              name: 'Analytics',
             ),
             const SizedBox(height: 10),
-            GestureDetector(
-              onTap: () {
-                locator<NavigationService>().navigateTo(SettingsRoute);
+            Element(
+              check: 3,
+              onPressed: () {
+                setState(() {
+                  checkInt = 3;
+                });
               },
-              child: const InactiveCircleButton(image: 'settings.svg'),
+              count: checkInt,
+              name: 'Settings',
             ),
             const Spacer(),
             Stack(
@@ -79,6 +102,60 @@ class SideMenuClosed extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class Element extends StatefulWidget {
+  const Element({
+    Key? key,
+    required this.check,
+    required this.onPressed,
+    required this.count,
+    required this.name,
+  }) : super(key: key);
+  final int check;
+  final VoidCallback onPressed;
+  final int count;
+  final String name;
+
+  @override
+  ElementState createState() => ElementState();
+}
+
+class ElementState extends State<Element> {
+  List inactiveButtons = [
+    const InactiveCircleButton(image: 'home.svg'),
+    const InactiveCircleButton(image: 'task.svg'),
+    const InactiveCircleButton(image: 'graph.svg'),
+    const InactiveCircleButton(image: 'settings.svg'),
+  ];
+
+  List activeButtons = [
+    const ActiveCircleButton(image: 'home.svg'),
+    const ActiveCircleButton(image: 'task.svg'),
+    const ActiveCircleButton(image: 'graph.svg'),
+    const ActiveCircleButton(image: 'settings.svg'),
+  ];
+
+  List routers = [
+    HomeRoute,
+    TasksRoute,
+    AnalyticsRoute,
+    SettingsRoute,
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () {
+        locator<NavigationService>().navigateTo(routers[widget.check]);
+        widget.onPressed();
+      },
+      child: widget.count != widget.check
+          ? inactiveButtons[widget.check]
+          : activeButtons[widget.check],
     );
   }
 }
