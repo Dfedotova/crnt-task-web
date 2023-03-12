@@ -1,4 +1,6 @@
 import 'package:crnt_task/controllers/dialogue_windows_controller.dart';
+import 'package:crnt_task/data/projects.dart';
+import 'package:crnt_task/models/project.dart';
 import 'package:crnt_task/widgets/projects/project_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -14,6 +16,13 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final RxString _currentDirection = 'все'.obs;
   final RxString _pickedDirection = 'все'.obs;
+  late List<Project> projects;
+
+  @override
+  void initState() {
+    super.initState();
+    projects = List.of(allProjects);
+  }
 
   void _pickDirection(String name) {
     setState(() {
@@ -72,6 +81,16 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  List<Project> _getProjects() {
+    final _pickedProjects = <Project>[];
+    for (var i = 0; i < projects.length; i++) {
+      if (projects[i].direction == _pickedDirection.value) {
+        _pickedProjects.add(projects[i]);
+      }
+    }
+    return _pickedProjects;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -96,7 +115,7 @@ class _HomePageState extends State<HomePage> {
               _category('глоссарии'),
               _category('конспекты'),
               _category('презентации'),
-              _category('верстка сайтов'),
+              _category('верстка сайта'),
             ],
           ),
         ),
@@ -140,17 +159,30 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
                 const SizedBox(height: 30),
-                Wrap(
-                  spacing: 22,
-                  runSpacing: 18,
-                  children: const [
-                    ProjectCard(projectName: 'Sowin'),
-                    ProjectCard(projectName: 'ТопСтанок'),
-                    ProjectCard(projectName: 'Яндекс'),
-                    ProjectCard(projectName: 'Skillbox'),
-                    ProjectCard(projectName: 'MosBuild'),
-                    ProjectCard(projectName: 'Sowin'),
-                  ],
+                Obx(
+                  () => Wrap(
+                    spacing: 22,
+                    runSpacing: 18,
+                    children: _pickedDirection.value == 'все'
+                        ? projects
+                            .map(
+                              (p) => ProjectCard(
+                                name: p.name,
+                                direction: p.direction,
+                                description: p.description,
+                              ),
+                            )
+                            .toList()
+                        : _getProjects()
+                            .map(
+                              (p) => ProjectCard(
+                                name: p.name,
+                                direction: p.direction,
+                                description: p.description,
+                              ),
+                            )
+                            .toList(),
+                  ),
                 ),
               ],
             ),

@@ -2,8 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class ProjectCard extends StatelessWidget {
-  const ProjectCard({Key? key, required this.projectName}) : super(key: key);
-  final String projectName;
+  const ProjectCard({
+    Key? key,
+    required this.name,
+    required this.direction,
+    required this.description,
+  }) : super(key: key);
+  final String name;
+  final String direction;
+  final String description;
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +25,9 @@ class ProjectCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'дизайн',
-            style: TextStyle(
+          Text(
+            direction,
+            style: const TextStyle(
               fontSize: 10,
               height: 1.2,
               fontWeight: FontWeight.w400,
@@ -57,7 +64,7 @@ class ProjectCard extends StatelessWidget {
           ),
           const SizedBox(height: 14),
           Text(
-            projectName,
+            name,
             style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w600,
@@ -65,12 +72,11 @@ class ProjectCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 10),
-          const Flexible(
+          Flexible(
             child: Text(
-              'Какое-то очень очень очень очень очень '
-              'очень очень очень длинное описание',
+              description,
               maxLines: 2,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 10,
                 height: 1.2,
                 overflow: TextOverflow.ellipsis,
