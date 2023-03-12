@@ -2,6 +2,7 @@ import 'package:crnt_task/controllers/dialogue_windows_controller.dart';
 import 'package:crnt_task/widgets/projects/project_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -11,24 +12,62 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  Widget _divider() {
-    return Container(
-      height: 0.5,
-      width: 224,
-      color: Theme.of(context).colorScheme.scrim,
-    );
+  final RxString _currentDirection = 'все'.obs;
+  final RxString _pickedDirection = 'все'.obs;
+
+  void _pickDirection(String name) {
+    setState(() {
+      _pickedDirection.value = name;
+    });
+  }
+
+  void _updateDirection(String name) {
+    setState(() {
+      _currentDirection.value = name;
+    });
   }
 
   Widget _category(String name) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
-      child: Text(
-        name,
-        style: const TextStyle(
-          fontSize: 14,
-          fontWeight: FontWeight.w400,
-          height: 1.5,
+    return MouseRegion(
+      onHover: (_) => _updateDirection(name),
+      onEnter: (_) => _pickDirection(name),
+      child: Container(
+        width: 224,
+        height: 35,
+        decoration: BoxDecoration(
+          border: Border(
+            bottom: BorderSide(
+              color: Theme.of(context).colorScheme.scrim,
+              width: 0.5,
+            ),
+          ),
         ),
+        child: _currentDirection.value == name
+            ? Row(
+                children: [
+                  Text(
+                    name,
+                    style: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400,
+                      height: 1.5,
+                    ),
+                  ),
+                  const Spacer(),
+                  SvgPicture.asset('assets/arrow_right_black.svg'),
+                ],
+              )
+            : Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  name,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                    height: 1.5,
+                  ),
+                ),
+              ),
       ),
     );
   }
@@ -43,23 +82,21 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _divider(),
+              _category('все'),
               _category('дизайн'),
-              _divider(),
-              _category('программирование'),
-              _divider(),
-              _category('презентации'),
-              _divider(),
-              _category('таймкоды'),
-              _divider(),
-              _category('расшифровки'),
-              _divider(),
+              _category('моушн-дизайн'),
               _category('монтаж'),
-              _divider(),
-              _category('дизайн'),
-              _divider(),
-              _category('дизайн'),
-              _divider(),
+              _category('фото и видео съемка'),
+              _category('озвучка'),
+              _category('субтитры'),
+              _category('локализация'),
+              _category('расшифровка'),
+              _category('таймкоды'),
+              _category('тесты'),
+              _category('глоссарии'),
+              _category('конспекты'),
+              _category('презентации'),
+              _category('верстка сайтов'),
             ],
           ),
         ),
