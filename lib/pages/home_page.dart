@@ -106,7 +106,7 @@ class _HomePageState extends State<HomePage> {
                 Wrap(
                   spacing: 22,
                   runSpacing: 18,
-                  children: [
+                  children: const [
                     ProjectCard(projectName: 'Sowin'),
                     ProjectCard(projectName: 'ТопСтанок'),
                     ProjectCard(projectName: 'Яндекс'),

@@ -227,7 +227,10 @@ class TaskCard extends StatelessWidget {
                       ),
                       const SizedBox(width: 30),
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 13),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 13,
+                          vertical: 13,
+                        ),
                         height: 115,
                         width: 560,
                         decoration: BoxDecoration(
@@ -352,9 +355,9 @@ class TaskCard extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 30),
-                      ActiveSkill(skill: 'тильда'),
+                      const ActiveSkill(skill: 'тильда'),
                       const SizedBox(width: 20),
-                      ActiveSkill(skill: 'презентация'),
+                      const ActiveSkill(skill: 'презентация'),
                     ],
                   ),
                   const Spacer(),

@@ -1,7 +1,6 @@
+import 'package:crnt_task/controllers/dialogue_windows_controller.dart';
 import 'package:crnt_task/widgets/tasks/task_menu_widget.dart';
 import 'package:flutter/material.dart';
-
-import '../../controllers/dialogue_windows_controller.dart';
 
 class MenuBoard extends StatelessWidget {
   const MenuBoard({Key? key, required this.context}) : super(key: key);

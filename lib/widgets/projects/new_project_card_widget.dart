@@ -112,7 +112,9 @@ class NewProjectCard extends StatelessWidget {
                       const SizedBox(width: 30),
                       Container(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 13, vertical: 13),
+                          horizontal: 13,
+                          vertical: 13,
+                        ),
                         height: 115,
                         width: 560,
                         decoration: BoxDecoration(

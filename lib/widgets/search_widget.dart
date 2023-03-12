@@ -27,7 +27,8 @@ class SearchWidget extends StatelessWidget {
             child: SvgPicture.asset('assets/search.svg'),
           ),
           const SizedBox(width: 8),
-          Text( // TODO text form field
+          Text(
+            // TODO text form field
             'Поиск по задачам',
             style: TextStyle(color: Theme.of(context).colorScheme.shadow),
           ),

@@ -1,8 +1,7 @@
+import 'package:crnt_task/controllers/dialogue_windows_controller.dart';
 import 'package:crnt_task/widgets/tasks/task_kanban_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
-import '../../controllers/dialogue_windows_controller.dart';
 
 class KanbanBoard extends StatelessWidget {
   const KanbanBoard({Key? key, required this.context}) : super(key: key);
