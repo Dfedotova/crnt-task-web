@@ -7,7 +7,7 @@ class Skill {
   final String skill;
   late bool isPicked;
 
-  void updatePickState(bool isPicked){
+  set updatePickState(bool isPicked){
     this.isPicked = isPicked;
   }
 }

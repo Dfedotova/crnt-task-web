@@ -1,8 +1,7 @@
 import 'package:crnt_task/data/skills.dart';
+import 'package:crnt_task/models/skill.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-import '../models/skill.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -85,7 +84,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       ),
                     ),
                     onDeleted: () => setState(() {
-                      s.updatePickState(false);
+                      s.updatePickState = false;
                     }),
                     deleteButtonTooltipMessage: 'Удалить',
                   )
@@ -101,7 +100,7 @@ class _SettingsPageState extends State<SettingsPage> {
               backgroundColor: Theme.of(context).colorScheme.shadow,
               deleteIcon: SvgPicture.asset('assets/plus.svg'),
               onDeleted: () => setState(() {
-                s.updatePickState(true);
+                s.updatePickState = true;
               }),
               deleteButtonTooltipMessage: 'Добавить',
             ),
