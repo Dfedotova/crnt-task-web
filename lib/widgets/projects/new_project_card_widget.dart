@@ -145,12 +145,13 @@ class NewProjectCard extends StatelessWidget {
                         color: Theme.of(context).colorScheme.secondary,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      child: const Align(
+                      child: Align(
                         child: Text(
                           'Сохранить',
                           style: TextStyle(
                             fontSize: 14,
                             height: 1.2,
+                            color: Theme.of(context).colorScheme.scrim,
                           ),
                         ),
                       ),

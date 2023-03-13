@@ -4,6 +4,9 @@ import 'package:crnt_task/widgets/circle_button_inactive.dart';
 import 'package:crnt_task/widgets/search_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
+
+import '../themes/theme_provider.dart';
 
 class HeaderWidget extends StatelessWidget {
   const HeaderWidget({Key? key}) : super(key: key);
@@ -15,8 +18,8 @@ class HeaderWidget extends StatelessWidget {
       width: double.infinity,
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.background,
-        border: Border.all(
-          color: Theme.of(context).colorScheme.tertiary,
+        border: Border(
+          bottom: BorderSide(color: Theme.of(context).colorScheme.tertiary),
         ),
       ),
       child: Padding(
@@ -27,7 +30,10 @@ class HeaderWidget extends StatelessWidget {
             const SizedBox(width: 20),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 8),
-              child: SvgPicture.asset('assets/logo.svg'),
+              child: Provider.of<ThemeProvider>(context).brightness ==
+                      CustomBrightness.light
+                  ? SvgPicture.asset('assets/logo_light.svg')
+                  : SvgPicture.asset('assets/logo_dark.svg'),
             ),
             const Spacer(),
             const SearchWidget(),

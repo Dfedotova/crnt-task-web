@@ -27,10 +27,11 @@ class ProjectCard extends StatelessWidget {
         children: [
           Text(
             direction,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 10,
               height: 1.2,
               fontWeight: FontWeight.w400,
+              color: Theme.of(context).colorScheme.scrim,
             ),
           ),
           const SizedBox(height: 5),
@@ -55,20 +56,22 @@ class ProjectCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 10),
-          const Text(
+          Text(
             '6/10',
             style: TextStyle(
               fontSize: 8,
               fontWeight: FontWeight.w300,
+              color: Theme.of(context).colorScheme.scrim,
             ),
           ),
           const SizedBox(height: 14),
           Text(
             name,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w600,
               height: 1.2,
+              color: Theme.of(context).colorScheme.scrim,
             ),
           ),
           const SizedBox(height: 10),
@@ -76,10 +79,11 @@ class ProjectCard extends StatelessWidget {
             child: Text(
               description,
               maxLines: 2,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 10,
                 height: 1.2,
                 overflow: TextOverflow.ellipsis,
+                color: Theme.of(context).colorScheme.scrim,
               ),
             ),
           ),

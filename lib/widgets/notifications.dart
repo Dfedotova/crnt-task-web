@@ -56,11 +56,12 @@ class NotificationsWidget extends StatelessWidget {
                     ),
                   ),
                   const Spacer(),
-                  const Text(
+                   Text(
                     '2 минуты назад',
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w300,
+                      color: Theme.of(context).colorScheme.scrim,
                     ),
                   ),
                 ],

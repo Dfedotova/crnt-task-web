@@ -21,20 +21,22 @@ class TaskMenu extends StatelessWidget {
           children: [
             SvgPicture.asset('assets/priority_2.svg'),
             const SizedBox(width: 15),
-            const Text(
+            Text(
               'ID-1: Sample task',
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
                 height: 1.2,
+                color: Theme.of(context).colorScheme.scrim,
               ),
             ),
             const SizedBox(width: 20),
-            const Text(
+            Text(
               'Тип: сабтаск',
               style: TextStyle(
                 fontSize: 12,
                 height: 1.2,
+                color: Theme.of(context).colorScheme.scrim,
               ),
             ),
             const SizedBox(width: 20),

@@ -16,7 +16,7 @@ class KanbanBoard extends StatelessWidget {
           height: 1.2,
           fontWeight: FontWeight.w600,
           fontFamily: 'Montserrat',
-          color: Theme.of(context).colorScheme.scrim,
+          color: Theme.of(context).colorScheme.surfaceTint,
         ),
         children: [
           TextSpan(

@@ -22,8 +22,8 @@ class _SideMenuClosedState extends State<StatefulWidget> {
       height: double.infinity,
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.background,
-        border: Border.all(
-          color: Theme.of(context).colorScheme.tertiary,
+        border: Border(
+          right: BorderSide(color: Theme.of(context).colorScheme.tertiary),
         ),
       ),
       child: Padding(

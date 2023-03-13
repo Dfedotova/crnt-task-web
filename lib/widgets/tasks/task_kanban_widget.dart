@@ -19,22 +19,23 @@ class TaskKanban extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            children: const [
+            children: [
               Text(
                 'ID-1: Sample task',
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
                   height: 1.2,
+                  color: Theme.of(context).colorScheme.scrim,
                 ),
               ),
-              Spacer(),
+              const Spacer(),
             ],
           ),
           const SizedBox(height: 15),
-          const Text(
+           Text(
             'Тип: сабтаск',
-            style: TextStyle(fontSize: 12),
+            style: TextStyle(fontSize: 12, color: Theme.of(context).colorScheme.scrim,),
           ),
           const SizedBox(height: 8),
           Row(

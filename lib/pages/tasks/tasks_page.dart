@@ -86,8 +86,8 @@ class _TasksPageState extends State<TasksPage> {
           ),
         ),
         const SizedBox(height: 40),
-        KanbanBoard(context: context),
-        //MenuBoard(context: context),
+        //KanbanBoard(context: context),
+        MenuBoard(context: context),
       ],
     );
   }

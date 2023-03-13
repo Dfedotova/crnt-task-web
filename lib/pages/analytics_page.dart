@@ -75,15 +75,17 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
           DataTable(
             columns: columns,
             rows: rows,
-            dataTextStyle: const TextStyle(
+            dataTextStyle: TextStyle(
               fontFamily: 'Montserrat',
               fontSize: 14,
               fontWeight: FontWeight.w400,
+              color: Theme.of(context).colorScheme.surfaceTint,
             ),
-            headingTextStyle: const TextStyle(
+            headingTextStyle: TextStyle(
               fontFamily: 'Montserrat',
               fontSize: 16,
               fontWeight: FontWeight.w600,
+              color: Theme.of(context).colorScheme.surfaceTint,
             ),
           ),
         ],

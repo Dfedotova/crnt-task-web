@@ -50,7 +50,7 @@ class _MainPageState extends State<MainPage> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SvgPicture.asset('assets/logo.svg'),
+                  SvgPicture.asset('assets/logo_light.svg'),
                   const Spacer(),
                   const Text(
                     'Current\nagency',

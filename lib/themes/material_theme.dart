@@ -52,9 +52,14 @@ ThemeData themeDark = _themeDark.copyWith(
   colorScheme: const ColorScheme.dark(
     background: Colors.black,
     primary: Colors.white,
-    scrim: Color(0xffC4C4C4),
+    scrim: Colors.black,
     secondary: Color(0xffE6FE52),
+    secondaryContainer: Color(0xffEEEEEE),
     tertiary: Color(0xff74A5AA),
+    shadow: Color(0xff757575),
+    surface: Color(0xff9C9C9C),
+    surfaceTint: Colors.white,
+    outline: Color(0xff4A4A4A),
   ),
 );
 
@@ -110,10 +115,11 @@ ThemeData themeLight = _themeLight.copyWith(
     primaryContainer: Color(0xFFE2E2E2),
     scrim: Colors.black,
     secondary: Color(0xffE6FE52),
-    tertiary: Color(0xff74A5AA),
     secondaryContainer: Color(0xffEEEEEE),
+    tertiary: Color(0xff74A5AA),
     shadow: Color(0xff757575),
     surface: Color(0xff9C9C9C),
+    surfaceTint: Colors.black,
     outline: Color(0xff4A4A4A),
   ),
 );

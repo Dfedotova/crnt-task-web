@@ -1,7 +1,13 @@
 import 'package:crnt_task/data/skills.dart';
 import 'package:crnt_task/models/skill.dart';
+import 'package:crnt_task/themes/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:provider/provider.dart';
+
+import '../themes/material_theme.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -12,6 +18,8 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPage> {
   late List<Skill> skills;
+  static final RxBool _lightModeSelected =
+      ThemeProvider().currentTheme == themeLight ? true.obs : false.obs;
 
   @override
   void initState() {
@@ -89,21 +97,21 @@ class _SettingsPageState extends State<SettingsPage> {
                     deleteButtonTooltipMessage: 'Удалить',
                   )
                 : Chip(
-              labelPadding: const EdgeInsets.symmetric(horizontal: 15),
-              label: Text(
-                s.skill,
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.primary,
-                  fontSize: 14,
-                ),
-              ),
-              backgroundColor: Theme.of(context).colorScheme.shadow,
-              deleteIcon: SvgPicture.asset('assets/plus.svg'),
-              onDeleted: () => setState(() {
-                s.updatePickState = true;
-              }),
-              deleteButtonTooltipMessage: 'Добавить',
-            ),
+                    labelPadding: const EdgeInsets.symmetric(horizontal: 15),
+                    label: Text(
+                      s.skill,
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.primary,
+                        fontSize: 14,
+                      ),
+                    ),
+                    backgroundColor: Theme.of(context).colorScheme.shadow,
+                    deleteIcon: SvgPicture.asset('assets/plus.svg'),
+                    onDeleted: () => setState(() {
+                      s.updatePickState = true;
+                    }),
+                    deleteButtonTooltipMessage: 'Добавить',
+                  ),
           )
           .toList(),
     );
@@ -111,6 +119,7 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return Padding(
       padding:
           const EdgeInsets.only(top: 150, bottom: 50, left: 150, right: 300),
@@ -179,18 +188,41 @@ class _SettingsPageState extends State<SettingsPage> {
                   ),
                 ),
                 const SizedBox(height: 10),
-                Wrap(
-                  spacing: 10,
-                  children: [
-                    _themeWidget(
-                      'светлая',
-                      Theme.of(context).colorScheme.tertiary,
-                    ),
-                    _themeWidget(
-                      'тёмная',
-                      Theme.of(context).colorScheme.shadow,
-                    ),
-                  ],
+                Obx(
+                  ()=> Wrap(
+                    spacing: 10,
+                    children: [
+                      GestureDetector(
+                        child: _themeWidget(
+                          'светлая',
+                          _lightModeSelected.value
+                              ? Theme.of(context).colorScheme.tertiary
+                              : Theme.of(context).colorScheme.shadow,
+                        ),
+                        onTap: () {
+                          if (themeProvider.brightness == CustomBrightness.dark) {
+                            themeProvider.toggle(CustomBrightness.light);
+                          }
+                          _lightModeSelected.value = true;
+                        },
+                      ),
+                      GestureDetector(
+                        child: _themeWidget(
+                          'тёмная',
+                          !_lightModeSelected.value
+                              ? Theme.of(context).colorScheme.tertiary
+                              : Theme.of(context).colorScheme.shadow,
+                        ),
+                        onTap: () {
+                          if (themeProvider.brightness ==
+                              CustomBrightness.light) {
+                            themeProvider.toggle(CustomBrightness.dark);
+                          }
+                          _lightModeSelected.value = false;
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),

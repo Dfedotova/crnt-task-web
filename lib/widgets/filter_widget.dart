@@ -34,7 +34,10 @@ class FilterWidget extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 15),
-              SvgPicture.asset('assets/arrow_down.svg'),
+              SvgPicture.asset(
+                'assets/arrow_down.svg',
+                color: Theme.of(context).colorScheme.surfaceTint,
+              ),
             ],
           )
         ],
