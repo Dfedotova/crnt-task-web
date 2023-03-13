@@ -1,8 +1,6 @@
 import 'dart:ui';
 
 import 'package:crnt_task/controllers/dialogue_windows_controller.dart';
-import 'package:crnt_task/data/skills.dart';
-import 'package:crnt_task/models/skill.dart';
 import 'package:crnt_task/widgets/skills/active_skill_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
