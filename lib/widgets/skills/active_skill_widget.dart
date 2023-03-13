@@ -18,7 +18,16 @@ class ActiveSkill extends StatelessWidget {
         ),
       ),
       backgroundColor: Theme.of(context).colorScheme.tertiary,
-      deleteIcon: SvgPicture.asset('assets/close.svg'),
+      /*avatar: Container(
+        padding: const EdgeInsets.all(2),
+        height: 18,
+          width: 18,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: Theme.of(context).colorScheme.shadow,
+          ),
+          child: SvgPicture.asset('assets/close.svg', color: Theme.of(context).colorScheme.primary,),
+      ),*/
     );
   }
 }

@@ -1,5 +1,8 @@
+import 'package:crnt_task/data/skills.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../models/skill.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -9,6 +12,14 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+  late List<Skill> skills;
+
+  @override
+  void initState() {
+    super.initState();
+    skills = List.of(allSkills);
+  }
+
   Widget _contactsWidget(String img, String text) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
@@ -26,36 +37,6 @@ class _SettingsPageState extends State<SettingsPage> {
           )
         ],
       ),
-    );
-  }
-
-  Widget _activeSkillWidget(String skill) {
-    return Chip(
-      labelPadding: const EdgeInsets.symmetric(horizontal: 15),
-      label: Text(
-        skill,
-        style: TextStyle(
-          color: Theme.of(context).colorScheme.primary,
-          fontSize: 14,
-        ),
-      ),
-      backgroundColor: Theme.of(context).colorScheme.tertiary,
-      deleteIcon: SvgPicture.asset('assets/close.svg'),
-    );
-  }
-
-  Widget _inactiveSkillWidget(String skill) {
-    return Chip(
-      labelPadding: const EdgeInsets.symmetric(horizontal: 15),
-      label: Text(
-        skill,
-        style: TextStyle(
-          color: Theme.of(context).colorScheme.primary,
-          fontSize: 14,
-        ),
-      ),
-      backgroundColor: Theme.of(context).colorScheme.shadow,
-      avatar: SvgPicture.asset('assets/plus.svg'),
     );
   }
 
@@ -77,19 +58,55 @@ class _SettingsPageState extends State<SettingsPage> {
     return Wrap(
       spacing: 10,
       runSpacing: 8,
-      children: [
-        _activeSkillWidget('программирование'),
-        _activeSkillWidget('транскрипция'),
-        _activeSkillWidget('отсмотр материала'),
-        _activeSkillWidget('упаковка уроков'),
-        _activeSkillWidget('верстка презентаций'),
-        _activeSkillWidget('тильда'),
-        _inactiveSkillWidget('видеомонтаж'),
-        _inactiveSkillWidget('figma'),
-        _inactiveSkillWidget('adobe'),
-        _inactiveSkillWidget('моушн-дизайн'),
-        _inactiveSkillWidget('верстка сайтов'),
-      ],
+      children: skills
+          .map(
+            (s) => s.isPicked
+                ? Chip(
+                    labelPadding: const EdgeInsets.symmetric(horizontal: 15),
+                    label: Text(
+                      s.skill,
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.primary,
+                        fontSize: 14,
+                      ),
+                    ),
+                    backgroundColor: Theme.of(context).colorScheme.tertiary,
+                    deleteIcon: Container(
+                      padding: const EdgeInsets.all(2),
+                      height: 18,
+                      width: 18,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Theme.of(context).colorScheme.shadow,
+                      ),
+                      child: SvgPicture.asset(
+                        'assets/close.svg',
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                    ),
+                    onDeleted: () => setState(() {
+                      s.updatePickState(false);
+                    }),
+                    deleteButtonTooltipMessage: 'Удалить',
+                  )
+                : Chip(
+              labelPadding: const EdgeInsets.symmetric(horizontal: 15),
+              label: Text(
+                s.skill,
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.primary,
+                  fontSize: 14,
+                ),
+              ),
+              backgroundColor: Theme.of(context).colorScheme.shadow,
+              deleteIcon: SvgPicture.asset('assets/plus.svg'),
+              onDeleted: () => setState(() {
+                s.updatePickState(true);
+              }),
+              deleteButtonTooltipMessage: 'Добавить',
+            ),
+          )
+          .toList(),
     );
   }
 

@@ -1,4 +1,4 @@
-import 'package:crnt_task/widgets/active_skill_widget.dart';
+import 'package:crnt_task/widgets/skills/active_skill_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
