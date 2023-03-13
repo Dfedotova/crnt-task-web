@@ -33,9 +33,12 @@ class TaskKanban extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 15),
-           Text(
+          Text(
             'Тип: сабтаск',
-            style: TextStyle(fontSize: 12, color: Theme.of(context).colorScheme.scrim,),
+            style: TextStyle(
+              fontSize: 12,
+              color: Theme.of(context).colorScheme.scrim,
+            ),
           ),
           const SizedBox(height: 8),
           Row(

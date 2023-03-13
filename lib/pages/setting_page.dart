@@ -1,13 +1,12 @@
 import 'package:crnt_task/data/skills.dart';
 import 'package:crnt_task/models/skill.dart';
+import 'package:crnt_task/themes/material_theme.dart';
 import 'package:crnt_task/themes/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:provider/provider.dart';
-
-import '../themes/material_theme.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -189,7 +188,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 ),
                 const SizedBox(height: 10),
                 Obx(
-                  ()=> Wrap(
+                  () => Wrap(
                     spacing: 10,
                     children: [
                       GestureDetector(
@@ -200,7 +199,8 @@ class _SettingsPageState extends State<SettingsPage> {
                               : Theme.of(context).colorScheme.shadow,
                         ),
                         onTap: () {
-                          if (themeProvider.brightness == CustomBrightness.dark) {
+                          if (themeProvider.brightness ==
+                              CustomBrightness.dark) {
                             themeProvider.toggle(CustomBrightness.light);
                           }
                           _lightModeSelected.value = true;

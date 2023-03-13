@@ -1,12 +1,11 @@
 import 'package:crnt_task/controllers/dialogue_windows_controller.dart';
+import 'package:crnt_task/themes/theme_provider.dart';
 import 'package:crnt_task/widgets/circle_button_active.dart';
 import 'package:crnt_task/widgets/circle_button_inactive.dart';
 import 'package:crnt_task/widgets/search_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-
-import '../themes/theme_provider.dart';
 
 class HeaderWidget extends StatelessWidget {
   const HeaderWidget({Key? key}) : super(key: key);

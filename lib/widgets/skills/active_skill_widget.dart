@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 class ActiveSkill extends StatelessWidget {
   const ActiveSkill({Key? key, required this.skill}) : super(key: key);
@@ -18,16 +17,6 @@ class ActiveSkill extends StatelessWidget {
         ),
       ),
       backgroundColor: Theme.of(context).colorScheme.tertiary,
-      /*avatar: Container(
-        padding: const EdgeInsets.all(2),
-        height: 18,
-          width: 18,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            color: Theme.of(context).colorScheme.shadow,
-          ),
-          child: SvgPicture.asset('assets/close.svg', color: Theme.of(context).colorScheme.primary,),
-      ),*/
     );
   }
 }
