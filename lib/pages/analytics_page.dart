@@ -1,6 +1,8 @@
+import 'package:crnt_task/data/employees.dart';
 import 'package:crnt_task/widgets/filter_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/intl.dart';
 
 class AnalyticsPage extends StatefulWidget {
   const AnalyticsPage({Key? key}) : super(key: key);
@@ -18,35 +20,42 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
     const DataColumn(label: Text('')),
   ];
 
-  List<DataRow> rows = [
-    DataRow(
-      cells: [
-        const DataCell(Text('Иванов Иван Иванович')),
-        const DataCell(Text('DSGN')),
-        const DataCell(Text('1.8')),
-        const DataCell(Text('130 000')),
-        DataCell(SvgPicture.asset('assets/edit.svg')),
-      ],
-    ),
-    DataRow(
-      cells: [
-        const DataCell(Text('Петров Александр Иванович')),
-        const DataCell(Text('JVDVP')),
-        const DataCell(Text('2.5')),
-        const DataCell(Text('50 000')),
-        DataCell(SvgPicture.asset('assets/edit.svg')),
-      ],
-    ),
-    DataRow(
-      cells: [
-        const DataCell(Text('Харитонова Мария Витальевна')),
-        const DataCell(Text('PM')),
-        const DataCell(Text('0.8')),
-        const DataCell(Text('60 000')),
-        DataCell(SvgPicture.asset('assets/edit.svg')),
-      ],
-    ),
-  ];
+  List<DataRow> _getRows() {
+    final rows = <DataRow>[];
+    for (var i = 0; i < allEmployees.length; i++) {
+      rows.add(
+        DataRow(
+          cells: [
+            DataCell(
+              Text('${allEmployees[i].surname} ${allEmployees[i].name}'),
+            ),
+            DataCell(
+              Text(allEmployees[i].direction),
+            ),
+            DataCell(
+              Text(
+                (DateTime.now()
+                            .difference(allEmployees[i].commencementDate)
+                            .inDays /
+                        365)
+                    .toStringAsFixed(1),
+              ),
+            ),
+            DataCell(
+              Text(
+                NumberFormat.compactSimpleCurrency(locale: 'ru-RU')
+                    .format(allEmployees[i].earnedSalary),
+              ),
+            ),
+            DataCell(
+              SvgPicture.asset('assets/edit.svg'),
+            ),
+          ],
+        ),
+      );
+    }
+    return rows;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,20 +81,26 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
             ],
           ),
           const SizedBox(height: 60),
-          DataTable(
-            columns: columns,
-            rows: rows,
-            dataTextStyle: TextStyle(
-              fontFamily: 'Montserrat',
-              fontSize: 14,
-              fontWeight: FontWeight.w400,
-              color: Theme.of(context).colorScheme.surfaceTint,
-            ),
-            headingTextStyle: TextStyle(
-              fontFamily: 'Montserrat',
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-              color: Theme.of(context).colorScheme.surfaceTint,
+          Expanded(
+            child: ListView(
+              children: [
+                DataTable(
+                  columns: columns,
+                  rows: _getRows(),
+                  dataTextStyle: TextStyle(
+                    fontFamily: 'Montserrat',
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                    color: Theme.of(context).colorScheme.surfaceTint,
+                  ),
+                  headingTextStyle: TextStyle(
+                    fontFamily: 'Montserrat',
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: Theme.of(context).colorScheme.surfaceTint,
+                  ),
+                ),
+              ],
             ),
           ),
         ],

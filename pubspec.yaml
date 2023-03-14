@@ -27,7 +27,8 @@ dependencies:
     sdk: flutter
   flutter_svg: any
   get: ^4.5.1
-  get_it: 
+  get_it:
+  intl: ^0.18.0
   meta: ^1.4.0
   provider: ^6.0.3
 
