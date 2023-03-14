@@ -1,11 +1,13 @@
-import 'dart:math';
-
+import 'package:crnt_task/data/employees.dart';
 import 'package:crnt_task/pages/tasks/kanban_board.dart';
 import 'package:crnt_task/pages/tasks/menu_board.dart';
+import 'package:crnt_task/utils/get_directions.dart';
 import 'package:crnt_task/widgets/filter_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+
+import '../../utils/get_employees.dart';
 
 class TasksPage extends StatefulWidget {
   const TasksPage({Key? key}) : super(key: key);
@@ -92,30 +94,38 @@ class _TasksPageState extends State<TasksPage> {
                 ),
               ),
               const SizedBox(width: 35),
-              const FilterWidget(
+              FilterWidget(
                 title: 'Сотрудники',
                 filter: 'Все сотрудники',
-                items: ['Федотова', 'Смирнов'],
+                items: getEmployees(),
               ),
-              const FilterWidget(
+              FilterWidget(
                 title: 'Приоритет',
                 filter: 'Все задачи',
-                items: ['Высокий', 'Выше среднего', 'Средний', 'Низкий'],
+                items: const ['Высокий', 'Выше среднего', 'Средний', 'Низкий'],
               ),
-              const FilterWidget(
+              FilterWidget(
                 title: 'Направление',
                 filter: 'Все направления',
-                items: ['Дизайн', 'Программирование'],
+                items: getDirections(),
               ),
-              const FilterWidget(
+              FilterWidget(
                 title: 'Статус',
                 filter: 'Все статусы',
-                items: ['Done', 'In progress'],
+                items: const [
+                  'Бэклог',
+                  'В процессе',
+                  'Сделано',
+                  'На проверке',
+                  'На согласовании',
+                  'Согласовано',
+                  'Архив'
+                ],
               ),
-              const FilterWidget(
+              FilterWidget(
                 title: 'Тип задачи',
                 filter: 'Все типы',
-                items: ['эпик', 'таск', 'сабтаск'],
+                items: const ['Эпик', 'Стори', 'Таск', 'Сабтаск'],
               ),
             ],
           ),

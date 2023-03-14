@@ -1,9 +1,10 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class FilterWidget extends StatefulWidget {
-  const FilterWidget({
+  FilterWidget({
     Key? key,
     required this.title,
     required this.filter,
@@ -61,33 +62,50 @@ class _FilterWidgetState extends State<FilterWidget>{
           ),
           const SizedBox(height: 2),
           DropdownButtonHideUnderline(
-            child: DropdownButton(
+            child: DropdownButton2(
               isDense: true,
-              borderRadius: BorderRadius.circular(20),
+              dropdownStyleData: DropdownStyleData(
+                offset: const Offset(-20, -5),
+                maxHeight: 300,
+                width: 200,
+                padding: const EdgeInsets.symmetric(vertical: 3),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Theme.of(context).colorScheme.secondaryContainer,
+                ),
+              ),
               items: _getItems(),
               onChanged: (value) {
                 setState(() {
                   _selectedValue.value = value as String;
                 });
               },
-              focusColor: Colors.transparent,
-              dropdownColor: Theme.of(context).colorScheme.secondaryContainer,
-              hint: Obx(
-                ()=> Text(
-                  _selectedValue.value,
-                  style: const TextStyle(
-                    height: 1.2,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    fontFamily: 'Montserrat',
-                  ),
+              customButton: Padding(
+                padding: const EdgeInsets.only(top: 4),
+                child: Row(
+                  children: [
+                    Obx(
+                          ()=> Text(
+                        _selectedValue.value,
+                        style: const TextStyle(
+                          height: 1.2,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                          fontFamily: 'Montserrat',
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 20),
+                    SvgPicture.asset(
+                      'assets/arrow_down.svg',
+                      color: Theme.of(context).colorScheme.surfaceTint,
+                    ),
+                  ],
                 ),
               ),
-              icon: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: SvgPicture.asset(
-                  'assets/arrow_down.svg',
-                  color: Theme.of(context).colorScheme.surfaceTint,
+              buttonStyleData: ButtonStyleData(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
                 ),
               ),
             ),

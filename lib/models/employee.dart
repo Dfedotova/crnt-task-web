@@ -12,4 +12,8 @@ class Employee {
   final String direction;
   final DateTime commencementDate;
   final int earnedSalary;
+
+  String get getFullName{
+    return '$surname $name';
+  }
 }
