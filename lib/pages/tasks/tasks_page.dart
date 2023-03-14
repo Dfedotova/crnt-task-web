@@ -1,8 +1,11 @@
+import 'dart:math';
+
 import 'package:crnt_task/pages/tasks/kanban_board.dart';
 import 'package:crnt_task/pages/tasks/menu_board.dart';
 import 'package:crnt_task/widgets/filter_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 class TasksPage extends StatefulWidget {
   const TasksPage({Key? key}) : super(key: key);
@@ -12,6 +15,31 @@ class TasksPage extends StatefulWidget {
 }
 
 class _TasksPageState extends State<TasksPage> {
+  final RxString _viewPicked = 'kanban'.obs;
+
+  Widget _activeView(String picture) {
+    return Container(
+      height: 45,
+      width: 45,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        color: Theme.of(context).colorScheme.secondary,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.4),
+            spreadRadius: 3,
+            blurRadius: 5,
+          ),
+        ],
+      ),
+      child: SvgPicture.asset(
+        'assets/$picture',
+        fit: BoxFit.scaleDown,
+        color: Theme.of(context).colorScheme.scrim,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -31,32 +59,34 @@ class _TasksPageState extends State<TasksPage> {
                       .secondaryContainer
                       .withOpacity(0.6),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
-                  child: Row(
+                child: Obx(
+                  () => Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SvgPicture.asset('assets/list.svg'),
-                      Container(
-                        height: 45,
-                        width: 45,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: Theme.of(context).colorScheme.secondary,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.4),
-                              spreadRadius: 3,
-                              blurRadius: 5,
-                            ),
-                          ],
-                        ),
-                        child: SvgPicture.asset(
-                          'assets/kanban.svg',
-                          fit: BoxFit.scaleDown,
-                        ),
+                      GestureDetector(
+                        onTap: () => _viewPicked.value = 'list',
+                        child: _viewPicked.value == 'list'
+                            ? _activeView('list.svg')
+                            : Padding(
+                                padding: const EdgeInsets.only(left: 12),
+                                child: SvgPicture.asset('assets/list.svg'),
+                              ),
                       ),
-                      SvgPicture.asset('assets/gant.svg'),
+                      GestureDetector(
+                        onTap: () => _viewPicked.value = 'kanban',
+                        child: _viewPicked.value == 'kanban'
+                            ? _activeView('kanban.svg')
+                            : SvgPicture.asset('assets/kanban.svg'),
+                      ),
+                      GestureDetector(
+                        onTap: () => _viewPicked.value = 'gantt',
+                        child: _viewPicked.value == 'gantt'
+                            ? _activeView('gant.svg')
+                            : Padding(
+                                padding: const EdgeInsets.only(right: 12),
+                                child: SvgPicture.asset('assets/gant.svg'),
+                              ),
+                      ),
                     ],
                   ),
                 ),
@@ -86,8 +116,11 @@ class _TasksPageState extends State<TasksPage> {
           ),
         ),
         const SizedBox(height: 40),
-        //KanbanBoard(context: context),
-        MenuBoard(context: context),
+        Obx(
+          () => _viewPicked.value == 'kanban'
+              ? KanbanBoard(context: context)
+              : /* _viewPicked.value == 'list' ? */ MenuBoard(context: context),
+        ),
       ],
     );
   }

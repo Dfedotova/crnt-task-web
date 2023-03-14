@@ -5,7 +5,7 @@ enum CustomBrightness { light, dark }
 
 class ThemeProvider extends ChangeNotifier {
   ThemeData _currentTheme = themeLight;
-  CustomBrightness _brightness = CustomBrightness.dark;
+  CustomBrightness _brightness = CustomBrightness.light;
 
   ThemeData get currentTheme => _currentTheme;
   CustomBrightness get brightness => _brightness;
