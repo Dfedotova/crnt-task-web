@@ -1,13 +1,11 @@
-import 'package:crnt_task/data/employees.dart';
 import 'package:crnt_task/pages/tasks/kanban_board.dart';
 import 'package:crnt_task/pages/tasks/menu_board.dart';
 import 'package:crnt_task/utils/get_directions.dart';
+import 'package:crnt_task/utils/get_employees.dart';
 import 'package:crnt_task/widgets/filter_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-
-import '../../utils/get_employees.dart';
 
 class TasksPage extends StatefulWidget {
   const TasksPage({Key? key}) : super(key: key);
@@ -102,7 +100,13 @@ class _TasksPageState extends State<TasksPage> {
               FilterWidget(
                 title: 'Приоритет',
                 filter: 'Все задачи',
-                items: const ['Высокий', 'Выше среднего', 'Средний', 'Низкий'],
+                items: const [
+                  'Все задачи',
+                  'Высокий',
+                  'Выше среднего',
+                  'Средний',
+                  'Низкий',
+                ],
               ),
               FilterWidget(
                 title: 'Направление',
@@ -113,6 +117,7 @@ class _TasksPageState extends State<TasksPage> {
                 title: 'Статус',
                 filter: 'Все статусы',
                 items: const [
+                  'Все статусы',
                   'Бэклог',
                   'В процессе',
                   'Сделано',
@@ -125,7 +130,13 @@ class _TasksPageState extends State<TasksPage> {
               FilterWidget(
                 title: 'Тип задачи',
                 filter: 'Все типы',
-                items: const ['Эпик', 'Стори', 'Таск', 'Сабтаск'],
+                items: const [
+                  'Все типы',
+                  'Эпик',
+                  'Стори',
+                  'Таск',
+                  'Сабтаск',
+                ],
               ),
             ],
           ),

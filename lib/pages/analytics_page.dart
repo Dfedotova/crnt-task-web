@@ -77,7 +77,12 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
               FilterWidget(
                 title: 'Время',
                 filter: 'Все время',
-                items: const ['Год', 'Месяц', 'Неделя'],
+                items: const [
+                  'Все время',
+                  'Год',
+                  'Месяц',
+                  'Неделя',
+                ],
               ),
               FilterWidget(
                 title: 'Направление',
