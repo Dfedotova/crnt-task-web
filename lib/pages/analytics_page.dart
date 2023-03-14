@@ -69,14 +69,17 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
               FilterWidget(
                 title: 'Сотрудники',
                 filter: 'Все сотрудники',
+                items: ['Федотова', 'Смирнов'],
               ),
               FilterWidget(
                 title: 'Время',
                 filter: 'Все время',
+                items: ['Год', 'Месяц', 'Неделя'],
               ),
               FilterWidget(
                 title: 'Направление',
                 filter: 'Все направления',
+                items: ['дизайн', 'програ'],
               ),
             ],
           ),

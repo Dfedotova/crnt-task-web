@@ -95,22 +95,27 @@ class _TasksPageState extends State<TasksPage> {
               const FilterWidget(
                 title: 'Сотрудники',
                 filter: 'Все сотрудники',
+                items: ['Федотова', 'Смирнов'],
               ),
               const FilterWidget(
                 title: 'Приоритет',
                 filter: 'Все задачи',
+                items: ['Высокий', 'Выше среднего', 'Средний', 'Низкий'],
               ),
               const FilterWidget(
                 title: 'Направление',
                 filter: 'Все направления',
+                items: ['Дизайн', 'Программирование'],
               ),
               const FilterWidget(
                 title: 'Статус',
                 filter: 'Все статусы',
+                items: ['Done', 'In progress'],
               ),
               const FilterWidget(
                 title: 'Тип задачи',
                 filter: 'Все типы',
+                items: ['эпик', 'таск', 'сабтаск'],
               ),
             ],
           ),
