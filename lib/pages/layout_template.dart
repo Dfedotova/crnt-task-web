@@ -2,7 +2,7 @@ import 'package:crnt_task/controllers/dialogue_windows_controller.dart';
 import 'package:crnt_task/widgets/header.dart';
 import 'package:crnt_task/widgets/notifications.dart';
 import 'package:crnt_task/widgets/projects/new_project_card_widget.dart';
-import 'package:crnt_task/widgets/side_menu_closed.dart';
+import 'package:crnt_task/widgets/side_menu.dart';
 import 'package:crnt_task/widgets/tasks/task_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';

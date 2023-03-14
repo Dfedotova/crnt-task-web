@@ -25,7 +25,11 @@ class HeaderWidget extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Row(
           children: [
-            const ActiveCircleButton(image: 'menu.svg'),
+            GestureDetector(
+              onTap: () => DialogueWindows.isMenuOpened.value =
+                  !DialogueWindows.isMenuOpened.value,
+              child: const ActiveCircleButton(image: 'menu.svg'),
+            ),
             const SizedBox(width: 20),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 8),

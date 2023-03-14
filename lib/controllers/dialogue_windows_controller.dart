@@ -4,4 +4,5 @@ class DialogueWindows {
   static RxBool isNotificationsOpened = false.obs;
   static RxBool isCardOpened = false.obs;
   static RxBool isProjectCardOpened = false.obs;
+  static RxBool isMenuOpened = false.obs;
 }
