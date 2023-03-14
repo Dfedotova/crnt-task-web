@@ -87,11 +87,12 @@ class _FilterWidgetState extends State<FilterWidget>{
                     Obx(
                           ()=> Text(
                         _selectedValue.value,
-                        style: const TextStyle(
+                        style: TextStyle(
                           height: 1.2,
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
                           fontFamily: 'Montserrat',
+                          color: Theme.of(context).colorScheme.surfaceTint,
                         ),
                       ),
                     ),
