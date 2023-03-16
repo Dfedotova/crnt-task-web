@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:crnt_task/controllers/check_opened_route.dart';
 import 'package:crnt_task/controllers/dialogue_windows_controller.dart';
 import 'package:crnt_task/locator.dart';
 import 'package:crnt_task/navigation/navigation_service.dart';
@@ -72,10 +73,10 @@ class _SideMenuClosedState extends State<StatefulWidget> {
                     check: 0,
                     onPressed: () {
                       setState(() {
-                        checkInt = 0;
+                        CheckOpenedRoute.openedRoute.value = 0;
                       });
                     },
-                    count: checkInt,
+                    count: CheckOpenedRoute.openedRoute.value,
                     name: 'Home',
                   ),
                   const SizedBox(height: 10),
@@ -83,10 +84,10 @@ class _SideMenuClosedState extends State<StatefulWidget> {
                     check: 1,
                     onPressed: () {
                       setState(() {
-                        checkInt = 1;
+                        CheckOpenedRoute.openedRoute.value = 1;
                       });
                     },
-                    count: checkInt,
+                    count: CheckOpenedRoute.openedRoute.value,
                     name: 'Tasks',
                   ),
                   const SizedBox(height: 10),
@@ -94,10 +95,10 @@ class _SideMenuClosedState extends State<StatefulWidget> {
                     check: 2,
                     onPressed: () {
                       setState(() {
-                        checkInt = 2;
+                        CheckOpenedRoute.openedRoute.value = 2;
                       });
                     },
-                    count: checkInt,
+                    count: CheckOpenedRoute.openedRoute.value,
                     name: 'Analytics',
                   ),
                   const SizedBox(height: 10),
@@ -105,10 +106,10 @@ class _SideMenuClosedState extends State<StatefulWidget> {
                     check: 3,
                     onPressed: () {
                       setState(() {
-                        checkInt = 3;
+                        CheckOpenedRoute.openedRoute.value = 3;
                       });
                     },
-                    count: checkInt,
+                    count: CheckOpenedRoute.openedRoute.value,
                     name: 'Settings',
                   ),
                   const Spacer(),
