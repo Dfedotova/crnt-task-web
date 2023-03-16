@@ -6,6 +6,8 @@ import 'package:crnt_task/pages/setting_page.dart';
 import 'package:crnt_task/pages/tasks/tasks_page.dart';
 import 'package:flutter/material.dart';
 
+import '../pages/layout_template.dart';
+
 Route<dynamic>? generateRoute(RouteSettings settings) {
   switch (settings.name) {
     case MainRoute:
@@ -26,6 +28,6 @@ Route<dynamic>? generateRoute(RouteSettings settings) {
 PageRoute _getPageRoute(Widget child, RouteSettings settings) {
   return MaterialPageRoute(
     settings: settings,
-    builder: (context) => child,
+    builder: (context) => LayoutTemplate(child: child),
   );
 }
