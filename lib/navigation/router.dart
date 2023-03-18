@@ -1,15 +1,12 @@
-import 'dart:js';
-
 import 'package:crnt_task/navigation/route_names.dart';
 import 'package:crnt_task/pages/analytics_page.dart';
 import 'package:crnt_task/pages/auth_page.dart';
 import 'package:crnt_task/pages/home_page.dart';
+import 'package:crnt_task/pages/layout_template.dart';
 import 'package:crnt_task/pages/main_page.dart';
 import 'package:crnt_task/pages/setting_page.dart';
 import 'package:crnt_task/pages/tasks/tasks_page.dart';
 import 'package:flutter/material.dart';
-
-import '../pages/layout_template.dart';
 
 Route<dynamic>? generateRoute(RouteSettings settings) {
   switch (settings.name) {
