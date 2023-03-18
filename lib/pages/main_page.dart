@@ -21,8 +21,6 @@ class _MainPageState extends State<MainPage> {
   @override
   void initState() {
     super.initState();
-    // Можно и здесь:
-    // c.load();
   }
 
   @override
@@ -70,7 +68,7 @@ class _MainPageState extends State<MainPage> {
                   const SizedBox(height: 24),
                   GestureDetector(
                     onTap: () {
-                      locator<NavigationService>().navigateTo(HomeRoute);
+                      locator<NavigationService>().navigateTo(AuthRoute);
                     },
                     child: Container(
                       alignment: Alignment.center,
