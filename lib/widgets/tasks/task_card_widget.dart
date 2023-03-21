@@ -1,12 +1,53 @@
 import 'dart:ui';
 
 import 'package:crnt_task/controllers/dialogue_windows_controller.dart';
+import 'package:crnt_task/utils/get_employees.dart';
 import 'package:crnt_task/widgets/skills/active_skill_widget.dart';
+import 'package:crnt_task/widgets/tasks/task_card_filter_widget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class TaskCard extends StatelessWidget {
-  const TaskCard({Key? key}) : super(key: key);
+class TaskCard extends StatefulWidget {
+  TaskCard({Key? key}) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() => _TaskCardState();
+}
+
+class _TaskCardState extends State<TaskCard> {
+  DateTime date = DateTime(
+    DateTime.now().year,
+    DateTime.now().month,
+    DateTime.now().day,
+  );
+  DateTime time = DateTime(
+    DateTime.now().year,
+    DateTime.now().month,
+    DateTime.now().day,
+    DateTime.now().hour,
+    DateTime.now().minute,
+  );
+
+  void _showDialog(Widget child, BuildContext context) {
+    showCupertinoModalPopup<void>(
+      context: context,
+      builder: (context) => Align(
+        child: Container(
+          height: 216,
+          width: 400,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30),
+            color: CupertinoColors.systemBackground.resolveFrom(context),
+          ),
+          child: SafeArea(
+            top: false,
+            child: child,
+          ),
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,29 +108,16 @@ class TaskCard extends StatelessWidget {
                       ),
                       const SizedBox(width: 30),
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 13),
                         height: 29,
                         width: 144,
                         decoration: BoxDecoration(
                           color: Theme.of(context).colorScheme.outline,
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        child: Row(
-                          children: [
-                            Text(
-                              'Сабтаск',
-                              style: TextStyle(
-                                color: Theme.of(context).colorScheme.primary,
-                                fontSize: 14,
-                                height: 1.2,
-                              ),
-                            ),
-                            const Spacer(),
-                            SvgPicture.asset(
-                              'assets/arrow_down.svg',
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
-                          ],
+                        child: const TaskCardFilterWidget(
+                          filter: 'Тип задачи',
+                          items: ['Сабтаск', 'Таск', 'Стори', 'Эпик'],
+                          img: 'arrow_down.svg',
                         ),
                       ),
                     ],
@@ -111,29 +139,24 @@ class TaskCard extends StatelessWidget {
                       ),
                       const SizedBox(width: 30),
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 13),
                         height: 29,
                         width: 144,
                         decoration: BoxDecoration(
                           color: Theme.of(context).colorScheme.outline,
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        child: Row(
-                          children: [
-                            Text(
-                              'Бэклог',
-                              style: TextStyle(
-                                color: Theme.of(context).colorScheme.primary,
-                                fontSize: 14,
-                                height: 1.2,
-                              ),
-                            ),
-                            const Spacer(),
-                            SvgPicture.asset(
-                              'assets/arrow_down.svg',
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
+                        child: const TaskCardFilterWidget(
+                          filter: 'Статус',
+                          items: [
+                            'Бэклог',
+                            'В процессе',
+                            'Сделано',
+                            'На проверке',
+                            'На согласовании',
+                            'Согласовано',
+                            'Архив',
                           ],
+                          img: 'arrow_down.svg',
                         ),
                       ),
                     ],
@@ -164,12 +187,28 @@ class TaskCard extends StatelessWidget {
                         ),
                         child: Row(
                           children: [
-                            Text(
-                              '12.12.2012',
-                              style: TextStyle(
-                                color: Theme.of(context).colorScheme.primary,
-                                fontSize: 14,
-                                height: 1.2,
+                            GestureDetector(
+                              child: Text(
+                                '${date.day}.${date.month}.${date.year}',
+                                style: TextStyle(
+                                  color: Theme.of(context).colorScheme.primary,
+                                  fontSize: 14,
+                                  height: 1.2,
+                                ),
+                              ),
+                              onTap: () => _showDialog(
+                                CupertinoDatePicker(
+                                  mode: CupertinoDatePickerMode.date,
+                                  initialDateTime: DateTime(
+                                    DateTime.now().year,
+                                    DateTime.now().month,
+                                    DateTime.now().day,
+                                  ),
+                                  onDateTimeChanged: (value) {
+                                    setState(() => date = value);
+                                  },
+                                ),
+                                context,
                               ),
                             ),
                             const Spacer(),
@@ -191,12 +230,25 @@ class TaskCard extends StatelessWidget {
                         ),
                         child: Row(
                           children: [
-                            Text(
-                              '18:00',
-                              style: TextStyle(
-                                color: Theme.of(context).colorScheme.primary,
-                                fontSize: 14,
-                                height: 1.2,
+                            GestureDetector(
+                              child: Text(
+                                '${time.hour}:${time.minute}',
+                                style: TextStyle(
+                                  color: Theme.of(context).colorScheme.primary,
+                                  fontSize: 14,
+                                  height: 1.2,
+                                ),
+                              ),
+                              onTap: () => _showDialog(
+                                CupertinoDatePicker(
+                                  mode: CupertinoDatePickerMode.time,
+                                  use24hFormat: true,
+                                  initialDateTime: time,
+                                  onDateTimeChanged: (value) {
+                                    setState(() => time = value);
+                                  },
+                                ),
+                                context,
                               ),
                             ),
                             const Spacer(),
@@ -220,7 +272,7 @@ class TaskCard extends StatelessWidget {
                           style: TextStyle(
                             fontWeight: FontWeight.w300,
                             fontSize: 14,
-                            height: 1.2,
+                            height: 2,
                             color: Theme.of(context).colorScheme.primary,
                           ),
                         ),
@@ -237,15 +289,25 @@ class TaskCard extends StatelessWidget {
                           color: Theme.of(context).colorScheme.outline,
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        child: Text(
-                          'тыры пыры тыры пыры тыры пыры тыры пыры тыры '
-                          'пыры тыры пыры тыры пыры тыры пыры тыры пыры '
-                          'тыры пыры тыры пыры тыры пыры тыры пыры тыры '
-                          'пыры тыры пыры тыры пыры тыры...',
+                        child: TextFormField(
                           style: TextStyle(
-                            color: Theme.of(context).colorScheme.primary,
-                            fontSize: 14,
                             height: 1.2,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            fontFamily: 'Montserrat',
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                          cursorColor: Theme.of(context).colorScheme.surface,
+                          cursorHeight: 20,
+                          decoration: InputDecoration.collapsed(
+                            hintText: 'Описание',
+                            hintStyle: TextStyle(
+                              height: 1.2,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w300,
+                              fontFamily: 'Montserrat',
+                              color: Theme.of(context).colorScheme.surface,
+                            ),
                           ),
                         ),
                       ),
@@ -268,29 +330,17 @@ class TaskCard extends StatelessWidget {
                       ),
                       const SizedBox(width: 30),
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 13),
                         height: 29,
                         width: 215,
                         decoration: BoxDecoration(
                           color: Theme.of(context).colorScheme.outline,
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        child: Row(
-                          children: [
-                            Text(
-                              'Дарья Федотова',
-                              style: TextStyle(
-                                color: Theme.of(context).colorScheme.primary,
-                                fontSize: 14,
-                                height: 1.2,
-                              ),
-                            ),
-                            const Spacer(),
-                            SvgPicture.asset(
-                              'assets/person.svg',
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
-                          ],
+                        child: TaskCardFilterWidget(
+                          filter: 'Исполнитель',
+                          items:
+                              getEmployees().sublist(1, getEmployees().length),
+                          img: 'person.svg',
                         ),
                       ),
                     ],
@@ -312,29 +362,21 @@ class TaskCard extends StatelessWidget {
                       ),
                       const SizedBox(width: 30),
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 13),
                         height: 29,
                         width: 144,
                         decoration: BoxDecoration(
                           color: Theme.of(context).colorScheme.outline,
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        child: Row(
-                          children: [
-                            Text(
-                              'Высокий',
-                              style: TextStyle(
-                                color: Theme.of(context).colorScheme.primary,
-                                fontSize: 14,
-                                height: 1.2,
-                              ),
-                            ),
-                            const Spacer(),
-                            SvgPicture.asset(
-                              'assets/arrow_down.svg',
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
+                        child: const TaskCardFilterWidget(
+                          filter: 'Приоритет',
+                          items: [
+                            'Высокий',
+                            'Средний',
+                            'Ниже среднего',
+                            'Низкий',
                           ],
+                          img: 'arrow_down.svg',
                         ),
                       ),
                     ],
