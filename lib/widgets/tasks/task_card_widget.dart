@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class TaskCard extends StatefulWidget {
-  TaskCard({Key? key}) : super(key: key);
+  const TaskCard({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _TaskCardState();
