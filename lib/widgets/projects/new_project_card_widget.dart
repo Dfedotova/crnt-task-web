@@ -185,6 +185,37 @@ class NewProjectCard extends StatelessWidget {
                       ),
                     ],
                   ),
+                  const SizedBox(height: 10),
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 110,
+                        child: Text(
+                          'Ответственный:',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w300,
+                            fontSize: 14,
+                            height: 1.2,
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 30),
+                      Container(
+                        height: 29,
+                        width: 215,
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.outline,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: const CardFilterWidget(
+                          filter: 'Ответственный',
+                          items: ['Дарья Федотова', 'Олег Иванов'],
+                          img: 'person.svg',
+                        ),
+                      ),
+                    ],
+                  ),
                   const Spacer(),
                   Align(
                     alignment: Alignment.bottomRight,
