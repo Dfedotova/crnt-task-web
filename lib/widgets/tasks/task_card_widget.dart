@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:crnt_task/controllers/dialogue_windows_controller.dart';
 import 'package:crnt_task/utils/get_employees.dart';
 import 'package:crnt_task/widgets/skills/active_skill_widget.dart';
-import 'package:crnt_task/widgets/tasks/task_card_filter_widget.dart';
+import 'package:crnt_task/widgets/tasks/card_filter_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -114,7 +114,7 @@ class _TaskCardState extends State<TaskCard> {
                           color: Theme.of(context).colorScheme.outline,
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        child: const TaskCardFilterWidget(
+                        child: const CardFilterWidget(
                           filter: 'Тип задачи',
                           items: ['Сабтаск', 'Таск', 'Стори', 'Эпик'],
                           img: 'arrow_down.svg',
@@ -145,7 +145,7 @@ class _TaskCardState extends State<TaskCard> {
                           color: Theme.of(context).colorScheme.outline,
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        child: const TaskCardFilterWidget(
+                        child: const CardFilterWidget(
                           filter: 'Статус',
                           items: [
                             'Бэклог',
@@ -336,7 +336,7 @@ class _TaskCardState extends State<TaskCard> {
                           color: Theme.of(context).colorScheme.outline,
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        child: TaskCardFilterWidget(
+                        child: CardFilterWidget(
                           filter: 'Исполнитель',
                           items:
                               getEmployees().sublist(1, getEmployees().length),
@@ -368,7 +368,7 @@ class _TaskCardState extends State<TaskCard> {
                           color: Theme.of(context).colorScheme.outline,
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        child: const TaskCardFilterWidget(
+                        child: const CardFilterWidget(
                           filter: 'Приоритет',
                           items: [
                             'Высокий',

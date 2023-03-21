@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-class TaskCardFilterWidget extends StatefulWidget {
-  const TaskCardFilterWidget({
+class CardFilterWidget extends StatefulWidget {
+  const CardFilterWidget({
     Key? key,
     required this.filter,
     required this.items,
@@ -15,10 +15,10 @@ class TaskCardFilterWidget extends StatefulWidget {
   final String img;
 
   @override
-  State<StatefulWidget> createState() => _TaskCardFilterWidgetState();
+  State<StatefulWidget> createState() => _CardFilterWidgetState();
 }
 
-class _TaskCardFilterWidgetState extends State<TaskCardFilterWidget>{
+class _CardFilterWidgetState extends State<CardFilterWidget>{
   late final RxString _selectedValue = widget.filter.obs;
 
   List<DropdownMenuItem<String>> _getItems() {

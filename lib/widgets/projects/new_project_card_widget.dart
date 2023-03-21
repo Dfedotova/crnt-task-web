@@ -1,8 +1,11 @@
 import 'dart:ui';
 
 import 'package:crnt_task/controllers/dialogue_windows_controller.dart';
+import 'package:crnt_task/utils/get_directions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../tasks/card_filter_widget.dart';
 
 class NewProjectCard extends StatelessWidget {
   const NewProjectCard({Key? key}) : super(key: key);
@@ -55,7 +58,7 @@ class NewProjectCard extends StatelessWidget {
                       SizedBox(
                         width: 110,
                         child: Text(
-                          'Направление: ',
+                          'ID: ',
                           style: TextStyle(
                             fontWeight: FontWeight.w300,
                             fontSize: 14,
@@ -73,22 +76,60 @@ class NewProjectCard extends StatelessWidget {
                           color: Theme.of(context).colorScheme.outline,
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        child: Row(
-                          children: [
-                            Text(
-                              'Дизайн',
-                              style: TextStyle(
-                                color: Theme.of(context).colorScheme.primary,
-                                fontSize: 14,
-                                height: 1.2,
-                              ),
+                        child: TextFormField(
+                          style: TextStyle(
+                            height: 1.2,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            fontFamily: 'Montserrat',
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                          cursorColor: Theme.of(context).colorScheme.surface,
+                          cursorHeight: 20,
+                          decoration: InputDecoration.collapsed(
+                            hintText: 'ID',
+                            hintStyle: TextStyle(
+                              height: 2,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w300,
+                              fontFamily: 'Montserrat',
+                              color: Theme.of(context).colorScheme.surface,
                             ),
-                            const Spacer(),
-                            SvgPicture.asset(
-                              'assets/arrow_down.svg',
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
-                          ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 110,
+                        child: Text(
+                          'Направление: ',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w300,
+                            fontSize: 14,
+                            height: 1.2,
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 30),
+                      Container(
+                        height: 29,
+                        width: 210,
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.outline,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: CardFilterWidget(
+                          filter: 'Направление',
+                          items: getDirections().sublist(
+                            1,
+                            getDirections().length,
+                          ),
+                          img: 'arrow_down.svg',
                         ),
                       ),
                     ],
@@ -104,7 +145,7 @@ class NewProjectCard extends StatelessWidget {
                           style: TextStyle(
                             fontWeight: FontWeight.w300,
                             fontSize: 14,
-                            height: 1.2,
+                            height: 2,
                             color: Theme.of(context).colorScheme.primary,
                           ),
                         ),
@@ -121,15 +162,25 @@ class NewProjectCard extends StatelessWidget {
                           color: Theme.of(context).colorScheme.outline,
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        child: Text(
-                          'тыры пыры тыры пыры тыры пыры тыры пыры тыры '
-                          'пыры тыры пыры тыры пыры тыры пыры тыры пыры '
-                          'тыры пыры тыры пыры тыры пыры тыры пыры тыры '
-                          'пыры тыры пыры тыры пыры тыры...',
+                        child: TextFormField(
                           style: TextStyle(
-                            color: Theme.of(context).colorScheme.primary,
-                            fontSize: 14,
                             height: 1.2,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            fontFamily: 'Montserrat',
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                          cursorColor: Theme.of(context).colorScheme.surface,
+                          cursorHeight: 20,
+                          decoration: InputDecoration.collapsed(
+                            hintText: 'Описание',
+                            hintStyle: TextStyle(
+                              height: 1.2,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w300,
+                              fontFamily: 'Montserrat',
+                              color: Theme.of(context).colorScheme.surface,
+                            ),
                           ),
                         ),
                       ),
