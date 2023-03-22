@@ -9,7 +9,7 @@ List<Employee> allEmployees = [
     telegram: '@smirnov_2_0',
     direction: 'CEO',
     commencementDate: DateTime.parse('2019-01-01'),
-    earnedSalary: 5000000,
+    earnedSalary: 3550000,
   ),
   Employee(
     surname: 'Иванов',
@@ -19,7 +19,7 @@ List<Employee> allEmployees = [
     telegram: '@smirnov_2_0',
     direction: 'PM',
     commencementDate: DateTime.parse('2019-01-01'),
-    earnedSalary: 1000000,
+    earnedSalary: 1200000,
   ),
   Employee(
     surname: 'Фёдоров',
@@ -29,7 +29,7 @@ List<Employee> allEmployees = [
     telegram: '@smirnov_2_0',
     direction: 'Bizdev',
     commencementDate: DateTime.parse('2019-01-01'),
-    earnedSalary: 100000,
+    earnedSalary: 1050500,
   ),
   Employee(
     surname: 'Газутдинов',
@@ -49,7 +49,7 @@ List<Employee> allEmployees = [
     telegram: '@smirnov_2_0',
     direction: 'Видеопродакшен',
     commencementDate: DateTime.parse('2019-01-01'),
-    earnedSalary: 50000,
+    earnedSalary: 55000,
   ),
   Employee(
     surname: 'Бабаева',
@@ -69,7 +69,7 @@ List<Employee> allEmployees = [
     telegram: '@smirnov_2_0',
     direction: 'Дизайн',
     commencementDate: DateTime.parse('2021-01-01'),
-    earnedSalary: 150000,
+    earnedSalary: 120000,
   ),
   Employee(
     surname: 'Кулакова',
@@ -79,7 +79,7 @@ List<Employee> allEmployees = [
     telegram: '@smirnov_2_0',
     direction: 'Дизайн',
     commencementDate: DateTime.parse('2019-01-01'),
-    earnedSalary: 5000000,
+    earnedSalary: 185000,
   ),
   Employee(
     surname: 'Царёва',
@@ -89,7 +89,7 @@ List<Employee> allEmployees = [
     telegram: '@smirnov_2_0',
     direction: 'Дизайн',
     commencementDate: DateTime.parse('2019-01-01'),
-    earnedSalary: 20000,
+    earnedSalary: 35000,
   ),
   Employee(
     surname: 'Трусов',
@@ -109,7 +109,7 @@ List<Employee> allEmployees = [
     telegram: '@smirnov_2_0',
     direction: 'Методология',
     commencementDate: DateTime.parse('2019-01-01'),
-    earnedSalary: 300000,
+    earnedSalary: 300500,
   ),
   Employee(
     surname: 'Ловягин',
@@ -119,7 +119,7 @@ List<Employee> allEmployees = [
     telegram: '@smirnov_2_0',
     direction: 'Методология',
     commencementDate: DateTime.parse('2019-01-01'),
-    earnedSalary: 300000,
+    earnedSalary: 278000,
   ),
   Employee(
     surname: 'Мандрик',
@@ -149,6 +149,6 @@ List<Employee> allEmployees = [
     telegram: '@lama_s_sushi',
     direction: 'Разработка',
     commencementDate: DateTime.parse('2020-03-01'),
-    earnedSalary: 500000,
+    earnedSalary: 750000,
   ),
 ];
