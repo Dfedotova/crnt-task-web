@@ -88,34 +88,37 @@ class ProjectCard extends StatelessWidget {
             ),
           ),
           const Spacer(),
-          Row(
-            children: [
-              const Spacer(),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                width: 108,
-                height: 18,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.tertiary,
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Row(
-                  children: [
-                    Text(
-                      'К задачам',
-                      style: TextStyle(
-                        fontSize: 10,
-                        fontWeight: FontWeight.w300,
-                        color: Theme.of(context).colorScheme.primary,
-                        height: 1.2,
+          Align(
+            alignment: Alignment.bottomRight,
+            child: Row(
+              children: [
+                const Spacer(),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  width: 108,
+                  height: 18,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.tertiary,
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Row(
+                    children: [
+                      Text(
+                        'К задачам',
+                        style: TextStyle(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w300,
+                          color: Theme.of(context).colorScheme.primary,
+                          height: 1.2,
+                        ),
                       ),
-                    ),
-                    const Spacer(),
-                    SvgPicture.asset('assets/arrow_right.svg'),
-                  ],
+                      const Spacer(),
+                      SvgPicture.asset('assets/arrow_right.svg'),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       ),

@@ -129,8 +129,9 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     const Spacer(),
                     GestureDetector(
-                      onTap: () =>
-                          DialogueWindows.isProjectCardOpened.value = true,
+                      onTap: () {
+                        DialogueWindows.isProjectCardOpened.value = true;
+                      },
                       child: Container(
                         margin: const EdgeInsets.only(right: 70),
                         padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -164,24 +165,24 @@ class _HomePageState extends State<HomePage> {
                     spacing: 22,
                     runSpacing: 18,
                     children: _pickedDirection.value == 'все'
-                        ? projects
-                            .map(
-                              (p) => ProjectCard(
-                                name: p.name,
-                                direction: p.direction,
-                                description: p.description,
-                              ),
-                            )
-                            .toList()
-                        : _getProjects()
-                            .map(
-                              (p) => ProjectCard(
-                                name: p.name,
-                                direction: p.direction,
-                                description: p.description,
-                              ),
-                            )
-                            .toList(),
+                            ? projects
+                                .map(
+                                  (p) => ProjectCard(
+                                    name: p.name,
+                                    direction: p.direction,
+                                    description: p.description,
+                                  ),
+                                )
+                                .toList()
+                            : _getProjects()
+                                .map(
+                                  (p) => ProjectCard(
+                                    name: p.name,
+                                    direction: p.direction,
+                                    description: p.description,
+                                  ),
+                                )
+                                .toList(),
                   ),
                 ),
               ],

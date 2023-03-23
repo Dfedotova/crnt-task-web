@@ -7,7 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class NewProjectCard extends StatelessWidget {
-  const NewProjectCard({Key? key}) : super(key: key);
+  NewProjectCard({Key? key}) : super(key: key);
+
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _idController = TextEditingController();
+  final TextEditingController _descriptionController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -43,12 +47,35 @@ class NewProjectCard extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 10),
-                  Text(
-                    'Название',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      color: Theme.of(context).colorScheme.primary,
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 13),
+                    height: 29,
+                    width: 244,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.outline,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: TextFormField(
+                      controller: _nameController,
+                      style: TextStyle(
+                        height: 1.2,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w300,
+                        fontFamily: 'Montserrat',
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                      cursorColor: Theme.of(context).colorScheme.surface,
+                      cursorHeight: 20,
+                      decoration: InputDecoration.collapsed(
+                        hintText: 'Название',
+                        hintStyle: TextStyle(
+                          height: 2,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w300,
+                          fontFamily: 'Montserrat',
+                          color: Theme.of(context).colorScheme.surface,
+                        ),
+                      ),
                     ),
                   ),
                   const SizedBox(height: 40),
@@ -76,6 +103,7 @@ class NewProjectCard extends StatelessWidget {
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: TextFormField(
+                          controller: _idController,
                           style: TextStyle(
                             height: 1.2,
                             fontSize: 16,
@@ -162,6 +190,7 @@ class NewProjectCard extends StatelessWidget {
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: TextFormField(
+                          controller: _descriptionController,
                           style: TextStyle(
                             height: 1.2,
                             fontSize: 16,
@@ -208,9 +237,9 @@ class NewProjectCard extends StatelessWidget {
                           color: Theme.of(context).colorScheme.outline,
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        child: const CardFilterWidget(
+                        child: CardFilterWidget(
                           filter: 'Ответственный',
-                          items: ['Дарья Федотова', 'Олег Иванов'],
+                          items: const ['Дарья Федотова', 'Олег Иванов'],
                           img: 'person.svg',
                         ),
                       ),
