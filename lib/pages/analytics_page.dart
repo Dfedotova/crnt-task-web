@@ -90,10 +90,10 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                 filter: 'Все сотрудники',
                 items: getEmployees(),
               ),
-              FilterWidget(
+              const FilterWidget(
                 title: 'Время',
                 filter: 'Все время',
-                items: const [
+                items: [
                   'Все время',
                   'Год',
                   'Месяц',

@@ -97,10 +97,10 @@ class _TasksPageState extends State<TasksPage> {
                 filter: 'Все сотрудники',
                 items: getEmployees(),
               ),
-              FilterWidget(
+              const FilterWidget(
                 title: 'Приоритет',
                 filter: 'Все задачи',
-                items: const [
+                items: [
                   'Все задачи',
                   'Высокий',
                   'Выше среднего',
@@ -113,10 +113,10 @@ class _TasksPageState extends State<TasksPage> {
                 filter: 'Все направления',
                 items: getDirections(),
               ),
-              FilterWidget(
+              const FilterWidget(
                 title: 'Статус',
                 filter: 'Все статусы',
-                items: const [
+                items: [
                   'Все статусы',
                   'Бэклог',
                   'В процессе',
@@ -127,10 +127,10 @@ class _TasksPageState extends State<TasksPage> {
                   'Архив'
                 ],
               ),
-              FilterWidget(
+              const FilterWidget(
                 title: 'Тип задачи',
                 filter: 'Все типы',
-                items: const [
+                items: [
                   'Все типы',
                   'Эпик',
                   'Стори',

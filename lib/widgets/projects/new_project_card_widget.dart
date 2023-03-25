@@ -237,9 +237,9 @@ class NewProjectCard extends StatelessWidget {
                           color: Theme.of(context).colorScheme.outline,
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        child: CardFilterWidget(
+                        child: const CardFilterWidget(
                           filter: 'Ответственный',
-                          items: const ['Дарья Федотова', 'Олег Иванов'],
+                          items: ['Дарья Федотова', 'Олег Иванов'],
                           img: 'person.svg',
                         ),
                       ),

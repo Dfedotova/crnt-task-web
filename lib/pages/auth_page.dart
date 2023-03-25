@@ -137,7 +137,10 @@ class _AuthPageState extends State<AuthPage> {
                                   ),
                                   if (_authFailed.value)
                                     const Padding(
-                                      padding: EdgeInsets.only(left: 10,top: 25),
+                                      padding: EdgeInsets.only(
+                                        left: 10,
+                                        top: 25,
+                                      ),
                                       child: Text(
                                         '* Неверный логин или пароль',
                                         style: TextStyle(

@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-import 'package:crnt_task/controllers/check_opened_route.dart';
 import 'package:crnt_task/controllers/dialogue_windows_controller.dart';
 import 'package:crnt_task/locator.dart';
 import 'package:crnt_task/navigation/navigation_service.dart';
@@ -8,6 +7,7 @@ import 'package:crnt_task/navigation/route_names.dart';
 import 'package:crnt_task/widgets/circle_button_active.dart';
 import 'package:crnt_task/widgets/circle_button_inactive.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 class SideMenuClosed extends StatefulWidget {
@@ -18,7 +18,7 @@ class SideMenuClosed extends StatefulWidget {
 }
 
 class _SideMenuClosedState extends State<StatefulWidget> {
-  int checkInt = 0;
+  static RxInt openedRoute = 0.obs;
 
   Widget _avatar(){
     return Stack(
@@ -73,10 +73,10 @@ class _SideMenuClosedState extends State<StatefulWidget> {
                     check: 0,
                     onPressed: () {
                       setState(() {
-                        CheckOpenedRoute.openedRoute.value = 0;
+                        openedRoute.value = 0;
                       });
                     },
-                    count: CheckOpenedRoute.openedRoute.value,
+                    count: openedRoute.value,
                     name: 'Home',
                   ),
                   const SizedBox(height: 10),
@@ -84,10 +84,10 @@ class _SideMenuClosedState extends State<StatefulWidget> {
                     check: 1,
                     onPressed: () {
                       setState(() {
-                        CheckOpenedRoute.openedRoute.value = 1;
+                        openedRoute.value = 1;
                       });
                     },
-                    count: CheckOpenedRoute.openedRoute.value,
+                    count: openedRoute.value,
                     name: 'Tasks',
                   ),
                   const SizedBox(height: 10),
@@ -95,10 +95,10 @@ class _SideMenuClosedState extends State<StatefulWidget> {
                     check: 2,
                     onPressed: () {
                       setState(() {
-                        CheckOpenedRoute.openedRoute.value = 2;
+                        openedRoute.value = 2;
                       });
                     },
-                    count: CheckOpenedRoute.openedRoute.value,
+                    count: openedRoute.value,
                     name: 'Analytics',
                   ),
                   const SizedBox(height: 10),
@@ -106,10 +106,10 @@ class _SideMenuClosedState extends State<StatefulWidget> {
                     check: 3,
                     onPressed: () {
                       setState(() {
-                        CheckOpenedRoute.openedRoute.value = 3;
+                        openedRoute.value = 3;
                       });
                     },
-                    count: CheckOpenedRoute.openedRoute.value,
+                    count: openedRoute.value,
                     name: 'Settings',
                   ),
                   const Spacer(),
