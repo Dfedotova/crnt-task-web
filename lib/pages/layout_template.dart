@@ -34,7 +34,7 @@ class LayoutTemplate extends StatelessWidget {
                 ),
               ),
             if (DialogueWindows.isNotificationsOpened.value)
-              const NotificationsWidget(),
+              NotificationsWidget(),
             if (DialogueWindows.isCardOpened.value) const TaskCard(),
             if (DialogueWindows.isProjectCardOpened.value)
               const NewProjectCard(),
