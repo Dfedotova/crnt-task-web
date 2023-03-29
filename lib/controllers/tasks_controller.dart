@@ -17,6 +17,8 @@ class TasksController extends GetxController {
   // final statusFilter = ''.obs; // зачем
   final typeFilter = ''.obs;
 
+  final nameFilter = ''.obs;
+
   final tasks = List.of(
     Get.put(ProjectsController()).projects.expand((project) => project.tasks),
   );
@@ -61,6 +63,15 @@ class TasksController extends GetxController {
     applyFilters();
   }
 
+  void onNameSearchUpdates(String newValue) {
+    if (newValue == '') {
+      nameFilter.value = '';
+    } else {
+      nameFilter.value = newValue;
+    }
+    applyFilters();
+  }
+
   Future<void> applyFilters() async {
     loading.value = true;
 
@@ -86,12 +97,22 @@ class TasksController extends GetxController {
               ))
         .toSet();
 
+    final filteredByName = (nameFilter.value.isEmpty
+            ? tasks
+            : tasks.where(
+                (task) => task.name.toLowerCase().contains(
+                      nameFilter.value.toLowerCase(),
+                    ),
+              ))
+        .toSet();
+
     filteredTasks
       ..clear()
       ..addAll(
         filteredByAssignee
             .intersection(filteredByPriority)
-            .intersection(filteredByType),
+            .intersection(filteredByType)
+            .intersection(filteredByName),
       );
     await Future.delayed(Duration(seconds: Random().nextInt(2)), () {});
     loading.value = false;

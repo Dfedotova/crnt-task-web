@@ -1,8 +1,37 @@
+import 'package:crnt_task/controllers/tasks_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
-class SearchWidget extends StatelessWidget {
+class SearchWidget extends StatefulWidget {
   const SearchWidget({Key? key}) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() => _SearchWidgetState();
+}
+
+class _SearchWidgetState extends State<SearchWidget> {
+  final TextEditingController controller = TextEditingController();
+  final tasksController = Get.put(TasksController());
+
+  @override
+  void initState() {
+    super.initState();
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      tasksController.filteredTasks
+        ..clear()
+        ..addAll(tasksController.tasks);
+    });
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      tasksController.loadAllTasks();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +56,22 @@ class SearchWidget extends StatelessWidget {
             child: SvgPicture.asset('assets/search.svg'),
           ),
           const SizedBox(width: 8),
-          Text(
-            // TODO text form field
-            'Поиск по задачам',
-            style: TextStyle(color: Theme.of(context).colorScheme.shadow),
+          Container(
+            width: 180,
+            child: TextFormField(
+              controller: controller,
+              cursorColor: Theme.of(context).colorScheme.scrim,
+              decoration: const InputDecoration.collapsed(
+                hintText: 'Поиск по задачам',
+              ),
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.shadow,
+                height: 1.2,
+                fontSize: 12,
+                fontFamily: 'Montserrat',
+              ),
+              onChanged: tasksController.onNameSearchUpdates,
+            ),
           ),
         ],
       ),
