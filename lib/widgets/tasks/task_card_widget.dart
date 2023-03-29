@@ -25,7 +25,8 @@ class _TaskCardState extends State<TaskCard> {
   void initState() {
     super.initState();
     _descriptionController.addListener(() {
-      createTaskController.notifyDescriptionUpdated(_descriptionController.text);
+      createTaskController
+          .notifyDescriptionUpdated(_descriptionController.text);
     });
   }
 
@@ -85,14 +86,18 @@ class _TaskCardState extends State<TaskCard> {
                             const Spacer(),
                             Obx(
                               () {
-                                final createLoading = createTaskController.loading.value;
+                                final createLoading =
+                                    createTaskController.loading.value;
                                 return GestureDetector(
                                   onTap: () => {
-                                    if (!createLoading) DialogueWindows.isCardOpened.value = false,
+                                    if (!createLoading)
+                                      DialogueWindows.isCardOpened.value =
+                                          false,
                                   },
                                   child: SvgPicture.asset(
                                     'assets/close.svg',
-                                    color: Theme.of(context).colorScheme.primary,
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
                                   ),
                                 );
                               },
@@ -133,9 +138,15 @@ class _TaskCardState extends State<TaskCard> {
                               ),
                               child: CardFilterWidget(
                                 filter: 'Тип задачи',
-                                items: const ['Сабтаск', 'Таск', 'Стори', 'Эпик'],
+                                items: const [
+                                  'Сабтаск',
+                                  'Таск',
+                                  'Стори',
+                                  'Эпик'
+                                ],
                                 img: 'arrow_down.svg',
-                                onValueSelected: createTaskController.onTypeUpdated,
+                                onValueSelected:
+                                    createTaskController.onTypeUpdated,
                               ),
                             ),
                           ],
@@ -175,7 +186,8 @@ class _TaskCardState extends State<TaskCard> {
                                   'Архив',
                                 ],
                                 img: 'arrow_down.svg',
-                                onValueSelected: createTaskController.onStatusUpdated,
+                                onValueSelected:
+                                    createTaskController.onStatusUpdated,
                               ),
                             ),
                           ],
@@ -197,7 +209,8 @@ class _TaskCardState extends State<TaskCard> {
                             ),
                             const SizedBox(width: 30),
                             Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 13),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 13),
                               height: 29,
                               width: 144,
                               decoration: BoxDecoration(
@@ -212,7 +225,9 @@ class _TaskCardState extends State<TaskCard> {
                                       '${createTaskController.date.month}.'
                                       '${createTaskController.date.year}',
                                       style: TextStyle(
-                                        color: Theme.of(context).colorScheme.primary,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary,
                                         fontSize: 14,
                                         height: 1.2,
                                       ),
@@ -222,7 +237,10 @@ class _TaskCardState extends State<TaskCard> {
                                         mode: CupertinoDatePickerMode.date,
                                         initialDateTime: DateTime.now(),
                                         onDateTimeChanged: (value) {
-                                          setState(() => createTaskController.onDateUpdated(value));
+                                          setState(
+                                            () => createTaskController
+                                                .onDateUpdated(value),
+                                          );
                                         },
                                       ),
                                       context,
@@ -231,14 +249,16 @@ class _TaskCardState extends State<TaskCard> {
                                   const Spacer(),
                                   SvgPicture.asset(
                                     'assets/calendar.svg',
-                                    color: Theme.of(context).colorScheme.primary,
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
                                   ),
                                 ],
                               ),
                             ),
                             const SizedBox(width: 20),
                             Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 13),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 13),
                               height: 29,
                               width: 144,
                               decoration: BoxDecoration(
@@ -252,7 +272,9 @@ class _TaskCardState extends State<TaskCard> {
                                       '${createTaskController.time.hour}:'
                                       '${createTaskController.time.minute}',
                                       style: TextStyle(
-                                        color: Theme.of(context).colorScheme.primary,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary,
                                         fontSize: 14,
                                         height: 1.2,
                                       ),
@@ -263,7 +285,10 @@ class _TaskCardState extends State<TaskCard> {
                                         use24hFormat: true,
                                         initialDateTime: DateTime.now(),
                                         onDateTimeChanged: (value) {
-                                          setState(() => createTaskController.onTimeUpdated(value));
+                                          setState(
+                                            () => createTaskController
+                                                .onTimeUpdated(value),
+                                          );
                                         },
                                       ),
                                       context,
@@ -272,7 +297,8 @@ class _TaskCardState extends State<TaskCard> {
                                   const Spacer(),
                                   SvgPicture.asset(
                                     'assets/clock.svg',
-                                    color: Theme.of(context).colorScheme.primary,
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
                                   ),
                                 ],
                               ),
@@ -316,7 +342,8 @@ class _TaskCardState extends State<TaskCard> {
                                   fontFamily: 'Montserrat',
                                   color: Theme.of(context).colorScheme.primary,
                                 ),
-                                cursorColor: Theme.of(context).colorScheme.surface,
+                                cursorColor:
+                                    Theme.of(context).colorScheme.surface,
                                 cursorHeight: 20,
                                 decoration: InputDecoration.collapsed(
                                   hintText: 'Описание',
@@ -325,7 +352,8 @@ class _TaskCardState extends State<TaskCard> {
                                     fontSize: 16,
                                     fontWeight: FontWeight.w300,
                                     fontFamily: 'Montserrat',
-                                    color: Theme.of(context).colorScheme.surface,
+                                    color:
+                                        Theme.of(context).colorScheme.surface,
                                   ),
                                 ),
                               ),
@@ -357,9 +385,11 @@ class _TaskCardState extends State<TaskCard> {
                               ),
                               child: CardFilterWidget(
                                 filter: 'Исполнитель',
-                                items: getEmployees().sublist(1, getEmployees().length),
+                                items: getEmployees()
+                                    .sublist(1, getEmployees().length),
                                 img: 'person.svg',
-                                onValueSelected: createTaskController.onAssigneeUpdated,
+                                onValueSelected:
+                                    createTaskController.onAssigneeUpdated,
                               ),
                             ),
                           ],
@@ -396,7 +426,8 @@ class _TaskCardState extends State<TaskCard> {
                                   'Низкий',
                                 ],
                                 img: 'arrow_down.svg',
-                                onValueSelected: createTaskController.onPriorityUpdated,
+                                onValueSelected:
+                                    createTaskController.onPriorityUpdated,
                               ),
                             ),
                           ],
@@ -428,7 +459,8 @@ class _TaskCardState extends State<TaskCard> {
                           alignment: Alignment.bottomRight,
                           child: Obx(
                             () {
-                              final createLoading = createTaskController.loading.value;
+                              final createLoading =
+                                  createTaskController.loading.value;
                               return GestureDetector(
                                 onTap: () {
                                   if (!createLoading) {
@@ -439,7 +471,8 @@ class _TaskCardState extends State<TaskCard> {
                                   height: 35,
                                   width: 178,
                                   decoration: BoxDecoration(
-                                    color: Theme.of(context).colorScheme.secondary,
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
                                     borderRadius: BorderRadius.circular(20),
                                   ),
                                   child: Align(
@@ -448,7 +481,8 @@ class _TaskCardState extends State<TaskCard> {
                                       style: TextStyle(
                                         fontSize: 14,
                                         height: 1.2,
-                                        color: Theme.of(context).colorScheme.scrim,
+                                        color:
+                                            Theme.of(context).colorScheme.scrim,
                                       ),
                                     ),
                                   ),

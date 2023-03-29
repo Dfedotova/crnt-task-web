@@ -34,7 +34,8 @@ class _NewProjectCardState extends State<NewProjectCard> {
       createProjectController.notifyIdUpdated(_idController.text);
     });
     _descriptionController.addListener(() {
-      createProjectController.notifyDescriptionUpdated(_descriptionController.text);
+      createProjectController
+          .notifyDescriptionUpdated(_descriptionController.text);
     });
   }
 
@@ -76,14 +77,20 @@ class _NewProjectCardState extends State<NewProjectCard> {
                             const Spacer(),
                             Obx(
                               () {
-                                final createLoading = createProjectController.loading.value;
+                                final createLoading =
+                                    createProjectController.loading.value;
                                 return GestureDetector(
                                   onTap: () => {
-                                    if (!createLoading) {DialogueWindows.isProjectCardOpened.value = false}
+                                    if (!createLoading)
+                                      {
+                                        DialogueWindows
+                                            .isProjectCardOpened.value = false
+                                      }
                                   },
                                   child: SvgPicture.asset(
                                     'assets/close.svg',
-                                    color: Theme.of(context).colorScheme.primary,
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
                                   ),
                                 );
                               },
@@ -139,7 +146,8 @@ class _NewProjectCardState extends State<NewProjectCard> {
                             ),
                             const SizedBox(width: 30),
                             Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 13),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 13),
                               height: 29,
                               width: 144,
                               decoration: BoxDecoration(
@@ -155,7 +163,8 @@ class _NewProjectCardState extends State<NewProjectCard> {
                                   fontFamily: 'Montserrat',
                                   color: Theme.of(context).colorScheme.primary,
                                 ),
-                                cursorColor: Theme.of(context).colorScheme.surface,
+                                cursorColor:
+                                    Theme.of(context).colorScheme.surface,
                                 cursorHeight: 20,
                                 decoration: InputDecoration.collapsed(
                                   hintText: 'ID',
@@ -164,7 +173,8 @@ class _NewProjectCardState extends State<NewProjectCard> {
                                     fontSize: 16,
                                     fontWeight: FontWeight.w300,
                                     fontFamily: 'Montserrat',
-                                    color: Theme.of(context).colorScheme.surface,
+                                    color:
+                                        Theme.of(context).colorScheme.surface,
                                   ),
                                 ),
                               ),
@@ -201,7 +211,8 @@ class _NewProjectCardState extends State<NewProjectCard> {
                                   directions.length,
                                 ),
                                 img: 'arrow_down.svg',
-                                onValueSelected: createProjectController.onDirectionUpdated,
+                                onValueSelected:
+                                    createProjectController.onDirectionUpdated,
                               ),
                             ),
                           ],
@@ -243,7 +254,8 @@ class _NewProjectCardState extends State<NewProjectCard> {
                                   fontFamily: 'Montserrat',
                                   color: Theme.of(context).colorScheme.primary,
                                 ),
-                                cursorColor: Theme.of(context).colorScheme.surface,
+                                cursorColor:
+                                    Theme.of(context).colorScheme.surface,
                                 cursorHeight: 20,
                                 decoration: InputDecoration.collapsed(
                                   hintText: 'Описание',
@@ -252,7 +264,8 @@ class _NewProjectCardState extends State<NewProjectCard> {
                                     fontSize: 16,
                                     fontWeight: FontWeight.w300,
                                     fontFamily: 'Montserrat',
-                                    color: Theme.of(context).colorScheme.surface,
+                                    color:
+                                        Theme.of(context).colorScheme.surface,
                                   ),
                                 ),
                               ),
@@ -286,7 +299,8 @@ class _NewProjectCardState extends State<NewProjectCard> {
                                 filter: 'Ответственный',
                                 items: const ['Дарья Федотова', 'Олег Иванов'],
                                 img: 'person.svg',
-                                onValueSelected: createProjectController.onResponsibleUpdated,
+                                onValueSelected: createProjectController
+                                    .onResponsibleUpdated,
                               ),
                             ),
                           ],
@@ -296,7 +310,8 @@ class _NewProjectCardState extends State<NewProjectCard> {
                           alignment: Alignment.bottomRight,
                           child: Obx(
                             () {
-                              final createLoading = createProjectController.loading.value;
+                              final createLoading =
+                                  createProjectController.loading.value;
                               return GestureDetector(
                                 onTap: () {
                                   if (!createLoading) {
@@ -307,7 +322,8 @@ class _NewProjectCardState extends State<NewProjectCard> {
                                   height: 35,
                                   width: 178,
                                   decoration: BoxDecoration(
-                                    color: Theme.of(context).colorScheme.secondary,
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
                                     borderRadius: BorderRadius.circular(20),
                                   ),
                                   child: Align(
@@ -316,7 +332,8 @@ class _NewProjectCardState extends State<NewProjectCard> {
                                       style: TextStyle(
                                         fontSize: 14,
                                         height: 1.2,
-                                        color: Theme.of(context).colorScheme.scrim,
+                                        color:
+                                            Theme.of(context).colorScheme.scrim,
                                       ),
                                     ),
                                   ),

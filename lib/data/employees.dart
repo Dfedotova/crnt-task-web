@@ -1,6 +1,5 @@
 import 'package:crnt_task/models/employee.dart';
 
-//todo
 final allEmployees = <Employee>[
   Employee(
     surname: 'Смирнов',

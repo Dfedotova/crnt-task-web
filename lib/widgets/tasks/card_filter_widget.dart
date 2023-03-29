@@ -65,7 +65,7 @@ class _CardFilterWidgetState extends State<CardFilterWidget> {
           onChanged: (value) {
             setState(() {
               widget.onValueSelected(value!);
-              _selectedValue = value!;
+              _selectedValue = value;
             });
           },
           customButton: Padding(

@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:crnt_task/controllers/dialogue_windows_controller.dart';
 import 'package:crnt_task/controllers/tasks_controller.dart';
+import 'package:crnt_task/data/current_user.dart';
 import 'package:crnt_task/locator.dart';
 import 'package:crnt_task/navigation/navigation_service.dart';
 import 'package:crnt_task/navigation/route_names.dart';
@@ -9,8 +10,6 @@ import 'package:crnt_task/widgets/circle_button_active.dart';
 import 'package:crnt_task/widgets/circle_button_inactive.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../data/current_user.dart';
 
 class SideMenuClosed extends StatefulWidget {
   const SideMenuClosed({Key? key}) : super(key: key);
@@ -33,7 +32,7 @@ class _SideMenuClosedState extends State<StatefulWidget> {
             backgroundColor: Theme.of(context).colorScheme.tertiary,
             child: Align(
               child: Text(
-                  currentUser.fullName.substring(0, 1),
+                currentUser.fullName.substring(0, 1),
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,

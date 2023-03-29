@@ -33,9 +33,11 @@ class LayoutTemplate extends StatelessWidget {
                   color: Theme.of(context).colorScheme.scrim,
                 ),
               ),
-            if (DialogueWindows.isNotificationsOpened.value) const NotificationsWidget(),
+            if (DialogueWindows.isNotificationsOpened.value)
+              const NotificationsWidget(),
             if (DialogueWindows.isCardOpened.value) const TaskCard(),
-            if (DialogueWindows.isProjectCardOpened.value) const NewProjectCard(),
+            if (DialogueWindows.isProjectCardOpened.value)
+              const NewProjectCard(),
           ],
         ),
       ),

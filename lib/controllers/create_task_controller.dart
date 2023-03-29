@@ -80,7 +80,10 @@ class CreateTaskController extends GetxController {
       if (tasksController.selectedProjectId.value != '') {
         Get.put(ProjectsController())
             .projects
-            .where((element) => element.id == tasksController.selectedProjectId.value)
+            .where(
+              (element) =>
+                  element.id == tasksController.selectedProjectId.value,
+            )
             .toList()
             .first
             .tasks

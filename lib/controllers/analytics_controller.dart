@@ -30,7 +30,7 @@ class AnalyticsController extends GetxController {
 
   Future<void> applyFilter() async {
     loading.value = true;
-    var filteredByDirection;
+    Set<Employee> filteredByDirection;
 
     filteredByDirection = (directionFilter.value.isEmpty
             ? allEmployees

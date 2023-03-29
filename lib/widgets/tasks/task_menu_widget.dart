@@ -1,10 +1,9 @@
+import 'package:crnt_task/data/current_user.dart';
 import 'package:crnt_task/models/task.dart';
 import 'package:crnt_task/widgets/skills/active_skill_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
-
-import '../../data/current_user.dart';
 
 class TaskMenu extends StatelessWidget {
   const TaskMenu({Key? key, required this.task}) : super(key: key);
@@ -85,7 +84,7 @@ class TaskMenu extends StatelessWidget {
                 backgroundColor: Theme.of(context).colorScheme.tertiary,
                 child: Align(
                   child: Text(
-                      currentUser.fullName.substring(0, 1),
+                    currentUser.fullName.substring(0, 1),
                     style: TextStyle(
                       fontSize: 10,
                       fontWeight: FontWeight.w600,

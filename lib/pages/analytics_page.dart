@@ -1,13 +1,10 @@
 import 'package:crnt_task/controllers/analytics_controller.dart';
-import 'package:crnt_task/data/directions.dart';
 import 'package:crnt_task/data/employees.dart';
 import 'package:crnt_task/models/employee.dart';
-import 'package:crnt_task/utils/get_employees.dart';
 import 'package:crnt_task/widgets/filter_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
@@ -90,7 +87,8 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
   }
 
   static List<LineSeries<Employee, String>> _getDefaultData(
-      List<Employee> employees) {
+    List<Employee> employees,
+  ) {
     return <LineSeries<Employee, String>>[
       LineSeries<Employee, String>(
         dataSource: employees,
