@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:crnt_task/controllers/create_task_controller.dart';
 import 'package:crnt_task/controllers/dialogue_windows_controller.dart';
+import 'package:crnt_task/data/tasks.dart';
 import 'package:crnt_task/utils/get_employees.dart';
 import 'package:crnt_task/widgets/skills/active_skill_widget.dart';
 import 'package:crnt_task/widgets/tasks/card_filter_widget.dart';
@@ -93,6 +94,7 @@ class _TaskCardState extends State<TaskCard> {
                                     if (!createLoading)
                                       DialogueWindows.isCardOpened.value =
                                           false,
+                                    DialogueWindows.taskOpened = defaultTask,
                                   },
                                   child: SvgPicture.asset(
                                     'assets/close.svg',
@@ -106,7 +108,8 @@ class _TaskCardState extends State<TaskCard> {
                         ),
                         const SizedBox(height: 10),
                         Text(
-                          'ID-1: Sample task',
+                          '${DialogueWindows.taskOpened.projectId}: '
+                              '${DialogueWindows.taskOpened.name}',
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w600,

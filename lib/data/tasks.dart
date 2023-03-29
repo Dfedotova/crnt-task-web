@@ -1,5 +1,23 @@
 import 'package:crnt_task/models/task.dart';
 
+Task defaultTask = Task(
+  projectId: 'ID-1',
+  name: 'Название',
+  type: 'Таск',
+  deadlineDate: DateTime(
+    DateTime.now().year,
+    DateTime.now().month,
+    DateTime.now().day,
+  ),
+  deadlineTime: DateTime(
+    DateTime.now().hour,
+    DateTime.now().minute,
+  ),
+  priority: 0,
+  tags: [''],
+  responsible: '',
+);
+
 List<Task> sowinTasks = [
   Task(
     projectId: 'SWN-1',

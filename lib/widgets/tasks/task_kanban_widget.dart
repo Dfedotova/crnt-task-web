@@ -69,10 +69,6 @@ class TaskKanban extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: task.tags.map((e) => ActiveSkill(skill: e)).toList(),
-            // children: const [
-            //   Expanded(child: ActiveSkill(skill: 'тильда')),
-            //   Expanded(child: ActiveSkill(skill: 'презентация')),
-            // ],
           ),
           const SizedBox(height: 6),
           Row(
@@ -83,7 +79,6 @@ class TaskKanban extends StatelessWidget {
                 width: 24,
                 height: 24,
                 child: CircleAvatar(
-                  //backgroundImage: AssetImage('assets/example_photo.jpeg'),
                   backgroundColor: Theme.of(context).colorScheme.tertiary,
                   child: Align(
                     child: Text(

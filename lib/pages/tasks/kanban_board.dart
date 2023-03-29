@@ -70,6 +70,7 @@ class KanbanBoard extends StatelessWidget {
                       onTap: () => {
                         // ЗАБЛОЧИЛ РЕДАКТИРОВАНИЕ ТАСКИ
                         DialogueWindows.isCardOpened.value = true,
+                        DialogueWindows.taskOpened = e,
                       },
                       child: TaskKanban(task: e),
                     ),
