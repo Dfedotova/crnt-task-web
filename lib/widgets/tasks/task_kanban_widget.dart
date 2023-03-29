@@ -12,7 +12,7 @@ class TaskKanban extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 17, vertical: 15),
-      height: 160,
+      height: 175,
       width: 243,
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.primaryContainer,
@@ -21,19 +21,24 @@ class TaskKanban extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              Text(
-                '${task.projectId}',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                  height: 1.2,
-                  color: Theme.of(context).colorScheme.scrim,
-                ),
-              ),
-              const Spacer(),
-            ],
+          Text(
+            '${task.projectId}',
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              height: 1.2,
+              color: Theme.of(context).colorScheme.scrim,
+            ),
+          ),
+          const SizedBox(height: 5),
+          Text(
+            task.name,
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w600,
+              height: 1.2,
+              color: Theme.of(context).colorScheme.scrim,
+            ),
           ),
           const SizedBox(height: 15),
           Text(
@@ -69,7 +74,7 @@ class TaskKanban extends StatelessWidget {
             //   Expanded(child: ActiveSkill(skill: 'презентация')),
             // ],
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 6),
           Row(
             children: [
               SvgPicture.asset('assets/priority_${task.priority+1}.svg'),

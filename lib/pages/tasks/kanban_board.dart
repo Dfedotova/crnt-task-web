@@ -65,7 +65,7 @@ class KanbanBoard extends StatelessWidget {
             children: tasksWithSuchStatus
                 .map(
                   (e) => Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    padding: const EdgeInsets.symmetric(vertical: 7),
                     child: GestureDetector(
                       onTap: () => {
                         // ЗАБЛОЧИЛ РЕДАКТИРОВАНИЕ ТАСКИ

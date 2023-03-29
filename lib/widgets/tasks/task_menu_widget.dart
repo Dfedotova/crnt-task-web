@@ -23,12 +23,10 @@ class TaskMenu extends StatelessWidget {
         ),
         child: Row(
           children: [
-            SvgPicture.asset('assets/priority_2.svg'),
-            // SvgPicture.asset('assets/priority_${task.priority+1}.svg'),
+            SvgPicture.asset('assets/priority_${task.priority+1}.svg'),
             const SizedBox(width: 15),
             Text(
-              'ID-1: Sample task',
-              // task.name,
+              task.name,
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
@@ -55,12 +53,6 @@ class TaskMenu extends StatelessWidget {
                     ),
                   )
                   .toList(),
-
-              // children: const [
-              //   ActiveSkill(skill: 'тильда'),
-              //   SizedBox(width: 10),
-              //   ActiveSkill(skill: 'презентация'),
-              // ],
             ),
             const Spacer(),
             SvgPicture.asset('assets/clock.svg'),
@@ -80,7 +72,6 @@ class TaskMenu extends StatelessWidget {
               width: 24,
               height: 24,
               child: CircleAvatar(
-                //backgroundImage: AssetImage('assets/example_photo.jpeg'),
                 backgroundColor: Theme.of(context).colorScheme.tertiary,
                 child: Align(
                   child: Text(
