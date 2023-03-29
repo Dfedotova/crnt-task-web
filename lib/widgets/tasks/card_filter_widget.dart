@@ -1,7 +1,6 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
 
 class CardFilterWidget extends StatefulWidget {
   const CardFilterWidget({
@@ -9,40 +8,24 @@ class CardFilterWidget extends StatefulWidget {
     required this.filter,
     required this.items,
     required this.img,
+    required this.onValueSelected,
   }) : super(key: key);
   final String filter;
   final List<String> items;
   final String img;
+  final void Function(String) onValueSelected;
 
   @override
   State<StatefulWidget> createState() => _CardFilterWidgetState();
 }
 
-class _CardFilterWidgetState extends State<CardFilterWidget>{
-  late final RxString _selectedValue = widget.filter.obs;
+class _CardFilterWidgetState extends State<CardFilterWidget> {
+  late String _selectedValue;
 
-  List<DropdownMenuItem<String>> _getItems() {
-    final _menuItems = <DropdownMenuItem<String>>[];
-    for (final item in widget.items) {
-      _menuItems.addAll(
-        [
-          DropdownMenuItem<String>(
-            value: item,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: Text(
-                item,
-                style: const TextStyle(
-                  fontSize: 12,
-                  fontFamily: 'Montserrat',
-                ),
-              ),
-            ),
-          ),
-        ],
-      );
-    }
-    return _menuItems;
+  @override
+  void initState() {
+    super.initState();
+    _selectedValue = widget.filter;
   }
 
   @override
@@ -50,7 +33,7 @@ class _CardFilterWidgetState extends State<CardFilterWidget>{
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: DropdownButtonHideUnderline(
-        child: DropdownButton2(
+        child: DropdownButton2<String>(
           isDense: true,
           dropdownStyleData: DropdownStyleData(
             offset: const Offset(-20, -5),
@@ -62,26 +45,41 @@ class _CardFilterWidgetState extends State<CardFilterWidget>{
               color: Theme.of(context).colorScheme.secondaryContainer,
             ),
           ),
-          items: _getItems(),
+          items: widget.items
+              .map(
+                (item) => DropdownMenuItem<String>(
+                  value: item,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: Text(
+                      item,
+                      style: const TextStyle(
+                        fontSize: 12,
+                        fontFamily: 'Montserrat',
+                      ),
+                    ),
+                  ),
+                ),
+              )
+              .toList(),
           onChanged: (value) {
             setState(() {
-              _selectedValue.value = value as String;
+              widget.onValueSelected(value!);
+              _selectedValue = value!;
             });
           },
           customButton: Padding(
             padding: const EdgeInsets.only(top: 4),
             child: Row(
               children: [
-                Obx(
-                      ()=> Text(
-                    _selectedValue.value,
-                    style: TextStyle(
-                      height: 0.7,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                      fontFamily: 'Montserrat',
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
+                Text(
+                  _selectedValue,
+                  style: TextStyle(
+                    height: 0.7,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: 'Montserrat',
+                    color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
                 const Spacer(),

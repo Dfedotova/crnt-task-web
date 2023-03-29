@@ -20,8 +20,7 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   final RxBool _isEditable = false.obs;
   late List<Skill> _skills;
-  static final RxBool _lightModeSelected =
-      ThemeProvider().currentTheme == themeLight ? true.obs : false.obs;
+  static final RxBool _lightModeSelected = ThemeProvider().currentTheme == themeLight ? true.obs : false.obs;
   static late User _user;
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
@@ -86,11 +85,9 @@ class _SettingsPageState extends State<SettingsPage> {
                     ),
                     onChanged: (value) => {
                       setState(() {
-                        if (toEdit == TextFieldToEdit.email &&
-                            _emailRegExp.hasMatch(value)) {
+                        if (toEdit == TextFieldToEdit.email && _emailRegExp.hasMatch(value)) {
                           _user.setEmail = value;
-                        } else if (toEdit == TextFieldToEdit.phone &&
-                            _phoneRegExp.hasMatch(value)) {
+                        } else if (toEdit == TextFieldToEdit.phone && _phoneRegExp.hasMatch(value)) {
                           _user.setPhone = value;
                         } else if (_telegramRegExp.hasMatch(value)) {
                           _user.setTelegram = value;
@@ -189,8 +186,7 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
     return Padding(
-      padding:
-          const EdgeInsets.only(top: 150, bottom: 50, left: 150, right: 300),
+      padding: const EdgeInsets.only(top: 150, bottom: 50, left: 150, right: 300),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -230,9 +226,7 @@ class _SettingsPageState extends State<SettingsPage> {
                           ),
                           child: Align(
                             child: SvgPicture.asset(
-                              _isEditable.value
-                                  ? 'assets/close.svg'
-                                  : 'assets/edit.svg',
+                              _isEditable.value ? 'assets/close.svg' : 'assets/edit.svg',
                               color: Theme.of(context).colorScheme.scrim,
                             ),
                           ),
@@ -291,8 +285,7 @@ class _SettingsPageState extends State<SettingsPage> {
                               : Theme.of(context).colorScheme.shadow,
                         ),
                         onTap: () {
-                          if (themeProvider.brightness ==
-                              CustomBrightness.dark) {
+                          if (themeProvider.brightness == CustomBrightness.dark) {
                             themeProvider.toggle(CustomBrightness.light);
                           }
                           _lightModeSelected.value = true;
@@ -306,8 +299,7 @@ class _SettingsPageState extends State<SettingsPage> {
                               : Theme.of(context).colorScheme.shadow,
                         ),
                         onTap: () {
-                          if (themeProvider.brightness ==
-                              CustomBrightness.light) {
+                          if (themeProvider.brightness == CustomBrightness.light) {
                             themeProvider.toggle(CustomBrightness.dark);
                           }
                           _lightModeSelected.value = false;

@@ -1,6 +1,6 @@
+import 'package:crnt_task/data/directions.dart';
 import 'package:crnt_task/data/employees.dart';
 import 'package:crnt_task/models/employee.dart';
-import 'package:crnt_task/utils/get_directions.dart';
 import 'package:crnt_task/utils/get_employees.dart';
 import 'package:crnt_task/widgets/filter_widget.dart';
 import 'package:flutter/material.dart';
@@ -39,17 +39,12 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
             ),
             DataCell(
               Text(
-                (DateTime.now()
-                            .difference(allEmployees[i].commencementDate)
-                            .inDays /
-                        365)
-                    .toStringAsFixed(1),
+                (DateTime.now().difference(allEmployees[i].commencementDate).inDays / 365).toStringAsFixed(1),
               ),
             ),
             DataCell(
               Text(
-                NumberFormat.compactSimpleCurrency(locale: 'ru-RU')
-                    .format(allEmployees[i].earnedSalary),
+                NumberFormat.compactSimpleCurrency(locale: 'ru-RU').format(allEmployees[i].earnedSalary),
               ),
             ),
             /*DataCell(
@@ -89,21 +84,24 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                 title: 'Сотрудники',
                 filter: 'Все сотрудники',
                 items: getEmployees(),
+                onFilterChanged: (_) {},
               ),
-              const FilterWidget(
+              FilterWidget(
                 title: 'Время',
                 filter: 'Все время',
-                items: [
+                items: const [
                   'Все время',
                   'Год',
                   'Месяц',
                   'Неделя',
                 ],
+                onFilterChanged: (_) {},
               ),
               FilterWidget(
                 title: 'Направление',
                 filter: 'Все направления',
-                items: getDirections(),
+                items: directions,
+                onFilterChanged: (_) {},
               ),
             ],
           ),

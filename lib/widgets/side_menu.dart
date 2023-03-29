@@ -1,14 +1,14 @@
 import 'dart:ui';
 
 import 'package:crnt_task/controllers/dialogue_windows_controller.dart';
+import 'package:crnt_task/controllers/tasks_controller.dart';
 import 'package:crnt_task/locator.dart';
 import 'package:crnt_task/navigation/navigation_service.dart';
 import 'package:crnt_task/navigation/route_names.dart';
 import 'package:crnt_task/widgets/circle_button_active.dart';
 import 'package:crnt_task/widgets/circle_button_inactive.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_rx/src/rx_types/rx_types.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:get/get.dart';
 
 class SideMenuClosed extends StatefulWidget {
   const SideMenuClosed({Key? key}) : super(key: key);
@@ -20,15 +20,14 @@ class SideMenuClosed extends StatefulWidget {
 class _SideMenuClosedState extends State<StatefulWidget> {
   static RxInt openedRoute = 0.obs;
 
-  Widget _avatar(){
+  Widget _avatar() {
     return Stack(
       children: [
         const SizedBox(
           width: 40,
           height: 40,
           child: CircleAvatar(
-            backgroundImage:
-            AssetImage('assets/example_photo.jpeg'),
+            backgroundImage: AssetImage('assets/example_photo.jpeg'),
           ),
         ),
         Padding(
@@ -83,6 +82,7 @@ class _SideMenuClosedState extends State<StatefulWidget> {
                   Element(
                     check: 1,
                     onPressed: () {
+                      Get.put(TasksController()).selectedProjectId.value = '';
                       setState(() {
                         openedRoute.value = 1;
                       });
@@ -114,19 +114,21 @@ class _SideMenuClosedState extends State<StatefulWidget> {
                   ),
                   const Spacer(),
                   Obx(
-                    ()=> !DialogueWindows.isMenuOpened.value ? Column(
-                      children: [
-                        _avatar(),
-                        const SizedBox(height: 10),
-                        const ActiveCircleButton(image: 'user.svg'),
-                      ],
-                    ) : Row(
-                      children: [
-                        const ActiveCircleButton(image: 'user.svg'),
-                        const SizedBox(width: 10),
-                        _avatar(),
-                      ],
-                    ),
+                    () => !DialogueWindows.isMenuOpened.value
+                        ? Column(
+                            children: [
+                              _avatar(),
+                              const SizedBox(height: 10),
+                              const ActiveCircleButton(image: 'user.svg'),
+                            ],
+                          )
+                        : Row(
+                            children: [
+                              const ActiveCircleButton(image: 'user.svg'),
+                              const SizedBox(width: 10),
+                              _avatar(),
+                            ],
+                          ),
                   ),
                 ],
               ),
@@ -288,7 +290,7 @@ class ElementState extends State<Element> {
     ),
   ];
 
-  List routers = [
+  List routes = [
     HomeRoute,
     TasksRoute,
     AnalyticsRoute,
@@ -300,7 +302,7 @@ class ElementState extends State<Element> {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () {
-        locator<NavigationService>().navigateTo(routers[widget.check]);
+        locator<NavigationService>().navigateTo(routes[widget.check]);
         widget.onPressed();
       },
       child: !DialogueWindows.isMenuOpened.value

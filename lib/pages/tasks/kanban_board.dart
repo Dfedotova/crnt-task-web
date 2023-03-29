@@ -1,13 +1,14 @@
 import 'package:crnt_task/controllers/dialogue_windows_controller.dart';
+import 'package:crnt_task/models/task.dart';
 import 'package:crnt_task/widgets/tasks/task_kanban_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class KanbanBoard extends StatelessWidget {
-  const KanbanBoard({Key? key, required this.context}) : super(key: key);
-  final BuildContext context;
+  const KanbanBoard({Key? key, required this.tasks}) : super(key: key);
+  final List<Task> tasks;
 
-  Widget _titleTextWidget(String title, int taskCount) {
+  Widget _titleTextWidget(String title, int taskCount, BuildContext context) {
     return RichText(
       text: TextSpan(
         text: '$title ',
@@ -34,7 +35,10 @@ class KanbanBoard extends StatelessWidget {
     );
   }
 
-  Widget _taskColumnWidget(String title, int taskCount) {
+  Widget _taskColumnWidget(TaskStatus status, BuildContext context) {
+    final title = taskStatusToString(status);
+    final tasksWithSuchStatus = tasks.where((element) => element.status == status);
+    final taskCount = tasksWithSuchStatus.length;
     return Padding(
       padding: EdgeInsets.only(left: (title == 'Бэклог') ? 0 : 22, right: 22),
       child: Column(
@@ -43,7 +47,7 @@ class KanbanBoard extends StatelessWidget {
           if (title == 'Бэклог')
             Row(
               children: [
-                _titleTextWidget(title, taskCount),
+                _titleTextWidget(title, taskCount, context),
                 const SizedBox(width: 114),
                 GestureDetector(
                   onTap: () => {
@@ -54,20 +58,22 @@ class KanbanBoard extends StatelessWidget {
               ],
             )
           else
-            _titleTextWidget(title, taskCount),
+            _titleTextWidget(title, taskCount, context),
           Column(
-            children: List.generate(
-              taskCount,
-              (index) => Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: GestureDetector(
-                  onTap: () => {
-                    DialogueWindows.isCardOpened.value = true,
-                  },
-                  child: const TaskKanban(),
-                ),
-              ),
-            ),
+            children: tasksWithSuchStatus
+                .map(
+                  (e) => Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: GestureDetector(
+                      onTap: () => {
+                        // ЗАБЛОЧИЛ РЕДАКТИРОВАНИЕ ТАСКИ
+                        // DialogueWindows.isCardOpened.value = true,
+                      },
+                      child: TaskKanban(task: e),
+                    ),
+                  ),
+                )
+                .toList(),
           ),
         ],
       ),
@@ -85,13 +91,11 @@ class KanbanBoard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(width: 100),
-              _taskColumnWidget('Бэклог', 4),
-              _taskColumnWidget('В процессе', 1),
-              _taskColumnWidget('Сделано', 1),
-              _taskColumnWidget('На проверке', 1),
-              _taskColumnWidget('На согласовании', 2),
-              _taskColumnWidget('Согласовано', 1),
-              _taskColumnWidget('Архив', 3),
+              ...TaskStatus.values
+                  .map(
+                    (e) => _taskColumnWidget(e, context),
+                  )
+                  .toList()
             ],
           ),
         ),

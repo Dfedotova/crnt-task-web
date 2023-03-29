@@ -1,10 +1,10 @@
-import 'package:crnt_task/controllers/dialogue_windows_controller.dart';
+import 'package:crnt_task/models/task.dart';
 import 'package:crnt_task/widgets/tasks/task_menu_widget.dart';
 import 'package:flutter/material.dart';
 
 class MenuBoard extends StatelessWidget {
-  const MenuBoard({Key? key, required this.context}) : super(key: key);
-  final BuildContext context;
+  const MenuBoard({Key? key, required this.tasks}) : super(key: key);
+  final List<Task> tasks;
 
   @override
   Widget build(BuildContext context) {
@@ -13,18 +13,22 @@ class MenuBoard extends StatelessWidget {
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: List.generate(
-              20,
-              (index) => Padding(
-                padding: const EdgeInsets.symmetric(vertical: 7),
-                child: GestureDetector(
-                  onTap: () => {
-                    DialogueWindows.isCardOpened.value = true,
-                  },
-                  child: const TaskMenu(),
-                ),
-              ),
-            ),
+            children: tasks
+                .map(
+                  (task) => Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 7),
+                    child: GestureDetector(
+                      onTap: () => {
+                        // ЗАБЛОЧИЛ РЕДАКТИРОВАНИЕ ТАСКИ
+                        // DialogueWindows.isCardOpened.value = true,
+                      },
+                      child: TaskMenu(
+                        task: task,
+                      ),
+                    ),
+                  ),
+                )
+                .toList(),
           ),
         ],
       ),

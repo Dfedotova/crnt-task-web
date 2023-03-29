@@ -1,6 +1,6 @@
 import 'package:crnt_task/models/skill.dart';
 
-List<Skill> allSkills = [
+final allSkills = <Skill>[
   Skill(skill: 'программирование', isPicked: true),
   Skill(skill: 'верстка сайтов', isPicked: false),
   Skill(skill: 'tilda', isPicked: false),

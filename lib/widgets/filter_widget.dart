@@ -9,16 +9,18 @@ class FilterWidget extends StatefulWidget {
     required this.title,
     required this.filter,
     required this.items,
+    required this.onFilterChanged,
   }) : super(key: key);
   final String title;
   final String filter;
   final List<String> items;
+  final void Function(String) onFilterChanged;
 
   @override
   State<StatefulWidget> createState() => _FilterWidgetState();
 }
 
-class _FilterWidgetState extends State<FilterWidget>{
+class _FilterWidgetState extends State<FilterWidget> {
   late final RxString _selectedValue = widget.filter.obs;
 
   List<DropdownMenuItem<String>> _getItems() {
@@ -62,7 +64,7 @@ class _FilterWidgetState extends State<FilterWidget>{
           ),
           const SizedBox(height: 2),
           DropdownButtonHideUnderline(
-            child: DropdownButton2(
+            child: DropdownButton2<String>(
               isDense: true,
               dropdownStyleData: DropdownStyleData(
                 offset: const Offset(-20, -5),
@@ -76,6 +78,7 @@ class _FilterWidgetState extends State<FilterWidget>{
               ),
               items: _getItems(),
               onChanged: (value) {
+                widget.onFilterChanged(value!);
                 setState(() {
                   _selectedValue.value = value as String;
                 });
@@ -85,7 +88,7 @@ class _FilterWidgetState extends State<FilterWidget>{
                 child: Row(
                   children: [
                     Obx(
-                          ()=> Text(
+                      () => Text(
                         _selectedValue.value,
                         style: TextStyle(
                           height: 1.2,
