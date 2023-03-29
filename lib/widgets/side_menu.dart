@@ -10,6 +10,8 @@ import 'package:crnt_task/widgets/circle_button_inactive.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../data/current_user.dart';
+
 class SideMenuClosed extends StatefulWidget {
   const SideMenuClosed({Key? key}) : super(key: key);
 
@@ -23,11 +25,23 @@ class _SideMenuClosedState extends State<StatefulWidget> {
   Widget _avatar() {
     return Stack(
       children: [
-        const SizedBox(
+        SizedBox(
           width: 40,
           height: 40,
           child: CircleAvatar(
-            backgroundImage: AssetImage('assets/example_photo.jpeg'),
+            //backgroundImage: AssetImage('assets/example_photo.jpeg'),
+            backgroundColor: Theme.of(context).colorScheme.tertiary,
+            child: Align(
+              child: Text(
+                  currentUser.fullName.substring(0, 1),
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  height: 1.2,
+                  color: Theme.of(context).colorScheme.scrim,
+                ),
+              ),
+            ),
           ),
         ),
         Padding(
@@ -119,12 +133,22 @@ class _SideMenuClosedState extends State<StatefulWidget> {
                             children: [
                               _avatar(),
                               const SizedBox(height: 10),
-                              const ActiveCircleButton(image: 'user.svg'),
+                              GestureDetector(
+                                onTap: () => locator<NavigationService>()
+                                    .navigateTo(AuthRoute),
+                                child:
+                                    const ActiveCircleButton(image: 'user.svg'),
+                              ),
                             ],
                           )
                         : Row(
                             children: [
-                              const ActiveCircleButton(image: 'user.svg'),
+                              GestureDetector(
+                                onTap: () => locator<NavigationService>()
+                                    .navigateTo(AuthRoute),
+                                child:
+                                    const ActiveCircleButton(image: 'user.svg'),
+                              ),
                               const SizedBox(width: 10),
                               _avatar(),
                             ],

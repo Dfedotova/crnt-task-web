@@ -39,6 +39,7 @@ class _AuthPageState extends State<AuthPage> {
       child: Align(
         alignment: Alignment.centerLeft,
         child: TextFormField(
+          obscureText: hint != 'Login',
           controller: controller,
           style: TextStyle(
             height: 1.2,

@@ -190,11 +190,23 @@ class _SettingsPageState extends State<SettingsPage> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(
+          SizedBox(
             width: 120,
             height: 120,
             child: CircleAvatar(
-              backgroundImage: AssetImage('assets/example_photo.jpeg'),
+              //backgroundImage: AssetImage('assets/example_photo.jpeg'),
+              backgroundColor: Theme.of(context).colorScheme.tertiary,
+              child: Align(
+                child: Text(
+                  currentUser.fullName.substring(0, 1),
+                  style: TextStyle(
+                    fontSize: 36,
+                    fontWeight: FontWeight.w600,
+                    height: 1.2,
+                    color: Theme.of(context).colorScheme.scrim,
+                  ),
+                ),
+              ),
             ),
           ),
           const SizedBox(width: 46),

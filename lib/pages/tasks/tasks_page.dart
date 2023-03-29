@@ -71,10 +71,13 @@ class _TasksPageState extends State<TasksPage> {
             children: [
               Container(
                 height: 45,
-                width: 140,
+                width: 100,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  color: Theme.of(context).colorScheme.secondaryContainer.withOpacity(0.6),
+                  color: Theme.of(context)
+                      .colorScheme
+                      .secondaryContainer
+                      .withOpacity(0.6),
                 ),
                 child: Obx(
                   () => Row(
@@ -93,9 +96,12 @@ class _TasksPageState extends State<TasksPage> {
                         onTap: () => _viewPicked.value = 'kanban',
                         child: _viewPicked.value == 'kanban'
                             ? _activeView('kanban.svg')
-                            : SvgPicture.asset('assets/kanban.svg'),
+                            : Padding(
+                                padding: const EdgeInsets.only(right: 11),
+                                child: SvgPicture.asset('assets/kanban.svg'),
+                              ),
                       ),
-                      GestureDetector(
+                      /*GestureDetector(
                         onTap: () => _viewPicked.value = 'gantt',
                         child: _viewPicked.value == 'gantt'
                             ? _activeView('gant.svg')
@@ -103,7 +109,7 @@ class _TasksPageState extends State<TasksPage> {
                                 padding: const EdgeInsets.only(right: 12),
                                 child: SvgPicture.asset('assets/gant.svg'),
                               ),
-                      ),
+                      ),*/
                     ],
                   ),
                 ),
@@ -171,14 +177,20 @@ class _TasksPageState extends State<TasksPage> {
             final filteredTasks = tasksController.filteredTasks;
             final tasks = selectedProjectId == ''
                 ? filteredTasks
-                : filteredTasks.where((element) => element.projectId == selectedProjectId).toList();
+                : filteredTasks
+                    .where(
+                      (element) =>
+                          element.projectId?.substring(0, 3) ==
+                          selectedProjectId,
+                    )
+                    .toList();
             if (loading) {
               return const Center(child: CircularProgressIndicator());
             } else {
               if (_viewPicked.value == 'kanban') {
                 return KanbanBoard(tasks: tasks);
               } else {
-                return /* _viewPicked.value == 'list' ? */ MenuBoard(tasks: tasks);
+                return MenuBoard(tasks: tasks);
               }
             }
           },

@@ -1,5 +1,5 @@
+import 'package:crnt_task/data/tasks.dart';
 import 'package:crnt_task/models/project.dart';
-import 'package:crnt_task/models/task.dart';
 
 final allProjects = <Project>[
   Project(
@@ -8,28 +8,7 @@ final allProjects = <Project>[
     direction: 'верстка сайта',
     description: 'Корпоративный сайт для компании Sowin',
     responsible: 'Федотова Дарья',
-    tasks: [
-      Task(
-        projectId: 'SWN',
-        name: 'task1',
-        type: 'сабтаск',
-        deadlineDate: DateTime.now().subtract(const Duration(days: 7)),
-        deadlineTime: DateTime.now().subtract(const Duration(hours: 2, minutes: 54)),
-        priority: 1,
-        tags: ['Tilda'],
-        responsible: 'Федотова Дарья',
-      ),
-      Task(
-        projectId: 'SWN',
-        name: 'task2',
-        type: 'таск',
-        deadlineDate: DateTime.now(),
-        deadlineTime: DateTime.now().subtract(const Duration(hours: 2, minutes: 8)),
-        priority: 3,
-        tags: ['Tilda', 'GitHub'],
-        responsible: 'Федотова Дарья',
-      ),
-    ],
+    tasks: sowinTasks,
   ),
   Project(
     name: 'ТопСтанок',
@@ -44,30 +23,7 @@ final allProjects = <Project>[
     direction: 'дизайн',
     description: 'Создание иллюстраций в корпоративном стиле',
     responsible: 'Иванов Олег',
-    tasks: [
-      Task(
-        projectId: 'SKB',
-        name: 'skillbox1',
-        type: 'сабтаск',
-        deadlineDate: DateTime.now().subtract(const Duration(days: 1)),
-        deadlineTime: DateTime.now().subtract(const Duration(hours: 5, minutes: 2)),
-        priority: 1,
-        status: TaskStatus.onCheck,
-        tags: ['ВШЭ'],
-        responsible: 'Федотова Дарья',
-      ),
-      Task(
-        projectId: 'SKB',
-        name: 'skillbox3',
-        type: 'сабтаск',
-        deadlineDate: DateTime.now().subtract(const Duration(days: 3)),
-        deadlineTime: DateTime.now().subtract(const Duration(hours: 1, minutes: 24)),
-        priority: 3,
-        status: TaskStatus.done,
-        tags: ['Word', 'Yandex'],
-        responsible: 'Федотова Дарья',
-      ),
-    ],
+    tasks: skillboxTasksIllustrations,
   ),
   Project(
     name: 'lit.agency',
@@ -110,5 +66,6 @@ final allProjects = <Project>[
     direction: 'презентации',
     description: 'Верстка презентаций к онлайн-курсам',
     responsible: 'Федотова Дарья',
+    tasks: skillboxTasksPresentations,
   ),
 ];

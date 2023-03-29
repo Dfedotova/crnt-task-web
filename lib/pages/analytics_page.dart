@@ -1,9 +1,13 @@
+import 'package:crnt_task/controllers/analytics_controller.dart';
 import 'package:crnt_task/data/directions.dart';
 import 'package:crnt_task/data/employees.dart';
 import 'package:crnt_task/models/employee.dart';
 import 'package:crnt_task/utils/get_employees.dart';
 import 'package:crnt_task/widgets/filter_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
@@ -15,6 +19,8 @@ class AnalyticsPage extends StatefulWidget {
 }
 
 class _AnalyticsPageState extends State<AnalyticsPage> {
+  final analyticsController = Get.put(AnalyticsController());
+
   //RxBool _isEditable = false.obs;
 
   List<DataColumn> columns = [
@@ -25,26 +31,49 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
     //const DataColumn(label: Text('')),
   ];
 
-  List<DataRow> _getRows() {
+  @override
+  void initState() {
+    super.initState();
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      analyticsController.filteredEmployees
+        ..clear()
+        ..addAll(allEmployees);
+    });
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      analyticsController.loadTable();
+    });
+  }
+
+  List<DataRow> _getRows(List<Employee> employees) {
     final rows = <DataRow>[];
-    for (var i = 0; i < allEmployees.length; i++) {
+    for (var i = 0; i < employees.length; i++) {
       rows.add(
         DataRow(
           cells: [
             DataCell(
-              Text('${allEmployees[i].surname} ${allEmployees[i].name}'),
+              Text('${employees[i].surname} ${employees[i].name}'),
             ),
             DataCell(
-              Text(allEmployees[i].direction),
+              Text(employees[i].direction),
             ),
             DataCell(
               Text(
-                (DateTime.now().difference(allEmployees[i].commencementDate).inDays / 365).toStringAsFixed(1),
+                (DateTime.now()
+                            .difference(employees[i].commencementDate)
+                            .inDays /
+                        365)
+                    .toStringAsFixed(1),
               ),
             ),
             DataCell(
               Text(
-                NumberFormat.compactSimpleCurrency(locale: 'ru-RU').format(allEmployees[i].earnedSalary),
+                NumberFormat.compactSimpleCurrency(locale: 'ru-RU')
+                    .format(employees[i].earnedSalary),
               ),
             ),
             /*DataCell(
@@ -60,11 +89,11 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
     return rows;
   }
 
-  static List<LineSeries<Employee, String>> _getDefaultData() {
-    final chartData = allEmployees;
+  static List<LineSeries<Employee, String>> _getDefaultData(
+      List<Employee> employees) {
     return <LineSeries<Employee, String>>[
       LineSeries<Employee, String>(
-        dataSource: chartData,
+        dataSource: employees,
         xValueMapper: (employee, _) => '${employee.surname}\n${employee.name}',
         yValueMapper: (employee, _) => employee.earnedSalary,
       ),
@@ -80,7 +109,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
         children: [
           Row(
             children: [
-              FilterWidget(
+              /*FilterWidget(
                 title: 'Сотрудники',
                 filter: 'Все сотрудники',
                 items: getEmployees(),
@@ -96,45 +125,60 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                   'Неделя',
                 ],
                 onFilterChanged: (_) {},
-              ),
+              ),*/
               FilterWidget(
                 title: 'Направление',
                 filter: 'Все направления',
-                items: directions,
-                onFilterChanged: (_) {},
+                items: const [
+                  'Все направления',
+                  'Управление',
+                  'Видеопродакшен',
+                  'Дизайн',
+                  'Методология',
+                  'Разработка',
+                ],
+                onFilterChanged: analyticsController.onDirectionFilterUpdated,
               ),
             ],
           ),
           const SizedBox(height: 60),
           Expanded(
-            child: ListView(
-              children: [
-                SfCartesianChart(
-                  primaryXAxis: CategoryAxis(),
-                  series: _getDefaultData(),
-                ),
-                const SizedBox(height: 60),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 50),
-                  child: DataTable(
-                    columns: columns,
-                    rows: _getRows(),
-                    dataTextStyle: TextStyle(
-                      fontFamily: 'Montserrat',
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      color: Theme.of(context).colorScheme.surfaceTint,
+            child: Obx(() {
+              final loading = analyticsController.loading.value;
+              final filteredEmployees = analyticsController.filteredEmployees;
+              if (loading) {
+                return const Center(child: CircularProgressIndicator());
+              } else {
+                return ListView(
+                  children: [
+                    SfCartesianChart(
+                      primaryXAxis: CategoryAxis(),
+                      series: _getDefaultData(filteredEmployees),
                     ),
-                    headingTextStyle: TextStyle(
-                      fontFamily: 'Montserrat',
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Theme.of(context).colorScheme.surfaceTint,
+                    const SizedBox(height: 60),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 50),
+                      child: DataTable(
+                        columns: columns,
+                        rows: _getRows(filteredEmployees),
+                        dataTextStyle: TextStyle(
+                          fontFamily: 'Montserrat',
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                          color: Theme.of(context).colorScheme.surfaceTint,
+                        ),
+                        headingTextStyle: TextStyle(
+                          fontFamily: 'Montserrat',
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: Theme.of(context).colorScheme.surfaceTint,
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-              ],
-            ),
+                  ],
+                );
+              }
+            }),
           ),
         ],
       ),

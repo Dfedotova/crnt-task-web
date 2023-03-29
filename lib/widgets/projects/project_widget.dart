@@ -16,11 +16,12 @@ class ProjectCard extends StatelessWidget {
 
   final Project project;
 
-  // final void Function(Project) onTap;
-
   @override
   Widget build(BuildContext context) {
-    final doneTasksLength = project.tasks.where((element) => element.status == TaskStatus.agreed).toList().length;
+    final doneTasksLength = project.tasks
+        .where((element) => element.status == TaskStatus.agreed)
+        .toList()
+        .length;
     final tasksLength = project.tasks.length;
     return GestureDetector(
       onTap: () {
@@ -70,9 +71,12 @@ class ProjectCard extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Spacer(
-                      flex: tasksLength == 0 ? 1 : tasksLength - doneTasksLength,
-                    ),
+                    if (tasksLength != doneTasksLength)
+                      Spacer(
+                        flex: tasksLength == 0
+                            ? 1
+                            : tasksLength - doneTasksLength,
+                      ),
                   ],
                 ),
               ],

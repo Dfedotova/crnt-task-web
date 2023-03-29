@@ -24,8 +24,7 @@ class TaskKanban extends StatelessWidget {
           Row(
             children: [
               Text(
-                'ID-1: Sample task',
-                // task.name,
+                '${task.projectId}',
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
@@ -64,7 +63,7 @@ class TaskKanban extends StatelessWidget {
           const SizedBox(height: 8),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: task.tags.map((e) => Expanded(child: ActiveSkill(skill: e))).toList(),
+            children: task.tags.map((e) => ActiveSkill(skill: e)).toList(),
             // children: const [
             //   Expanded(child: ActiveSkill(skill: 'тильда')),
             //   Expanded(child: ActiveSkill(skill: 'презентация')),
@@ -73,14 +72,25 @@ class TaskKanban extends StatelessWidget {
           const SizedBox(height: 8),
           Row(
             children: [
-              SvgPicture.asset('assets/priority_2.svg'),
-              // SvgPicture.asset('assets/priority_${task.priority+1}.svg'),
+              SvgPicture.asset('assets/priority_${task.priority+1}.svg'),
               const Spacer(),
-              const SizedBox(
+              SizedBox(
                 width: 24,
                 height: 24,
                 child: CircleAvatar(
-                  backgroundImage: AssetImage('assets/example_photo.jpeg'),
+                  //backgroundImage: AssetImage('assets/example_photo.jpeg'),
+                  backgroundColor: Theme.of(context).colorScheme.tertiary,
+                  child: Align(
+                    child: Text(
+                      task.responsible.substring(0, 1),
+                      style: TextStyle(
+                        fontSize: 10,
+                        fontWeight: FontWeight.w600,
+                        height: 1.2,
+                        color: Theme.of(context).colorScheme.scrim,
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ],

@@ -9,7 +9,7 @@ enum TaskStatus {
 
 class Task {
   Task({
-    this.projectId,
+    required this.projectId,
     // required this.project,
     required this.name,
     required this.type,
@@ -21,15 +21,13 @@ class Task {
     required this.responsible,
   });
 
-  final String? projectId; // id = id_проекта-порядковый номер
-  // final Project project; // мб через привязку к проекту лучше, если привязать,
-  // можно будет как раз считать кол-во согласованных тасок в проекте
+  final String? projectId;
   final String name;
   final String type;
   TaskStatus status;
   final DateTime deadlineDate;
   final DateTime deadlineTime;
-  final int priority; // values: [1..4]
+  final int priority;
   final List<String> tags;
   final String responsible;
 }

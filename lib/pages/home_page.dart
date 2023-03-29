@@ -55,7 +55,8 @@ class _HomePageState extends State<HomePage> {
                 height: 1.5,
               ),
             ),
-            if (homePageController.currentDirection.value == name) SvgPicture.asset('assets/arrow_right_black.svg'),
+            if (homePageController.currentDirection.value == name)
+              SvgPicture.asset('assets/arrow_right_black.svg'),
           ],
         ),
       ),
@@ -86,7 +87,8 @@ class _HomePageState extends State<HomePage> {
                   alignment: Alignment.centerRight,
                   child: Obx(
                     () {
-                      final createLoading = createProjectController.loading.value;
+                      final createLoading =
+                          createProjectController.loading.value;
                       final fetchLoading = projectsController.loading.value;
                       return GestureDetector(
                         onTap: () {
@@ -126,7 +128,8 @@ class _HomePageState extends State<HomePage> {
                 Obx(
                   () {
                     final loading = projectsController.loading.value;
-                    final pickedDirection = homePageController.pickedDirection.value;
+                    final pickedDirection =
+                        homePageController.pickedDirection.value;
 
                     if (loading) {
                       return const Center(child: CircularProgressIndicator());

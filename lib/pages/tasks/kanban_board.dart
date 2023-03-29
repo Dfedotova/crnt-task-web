@@ -37,7 +37,9 @@ class KanbanBoard extends StatelessWidget {
 
   Widget _taskColumnWidget(TaskStatus status, BuildContext context) {
     final title = taskStatusToString(status);
-    final tasksWithSuchStatus = tasks.where((element) => element.status == status);
+    final tasksWithSuchStatus = tasks.where(
+      (element) => element.status == status,
+    );
     final taskCount = tasksWithSuchStatus.length;
     return Padding(
       padding: EdgeInsets.only(left: (title == 'Бэклог') ? 0 : 22, right: 22),
@@ -67,7 +69,7 @@ class KanbanBoard extends StatelessWidget {
                     child: GestureDetector(
                       onTap: () => {
                         // ЗАБЛОЧИЛ РЕДАКТИРОВАНИЕ ТАСКИ
-                        // DialogueWindows.isCardOpened.value = true,
+                        DialogueWindows.isCardOpened.value = true,
                       },
                       child: TaskKanban(task: e),
                     ),

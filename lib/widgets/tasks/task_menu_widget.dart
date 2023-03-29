@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 
+import '../../data/current_user.dart';
+
 class TaskMenu extends StatelessWidget {
   const TaskMenu({Key? key, required this.task}) : super(key: key);
   final Task task;
@@ -75,11 +77,23 @@ class TaskMenu extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 20),
-            const SizedBox(
+            SizedBox(
               width: 24,
               height: 24,
               child: CircleAvatar(
-                backgroundImage: AssetImage('assets/example_photo.jpeg'),
+                //backgroundImage: AssetImage('assets/example_photo.jpeg'),
+                backgroundColor: Theme.of(context).colorScheme.tertiary,
+                child: Align(
+                  child: Text(
+                      currentUser.fullName.substring(0, 1),
+                    style: TextStyle(
+                      fontSize: 10,
+                      fontWeight: FontWeight.w600,
+                      height: 1.2,
+                      color: Theme.of(context).colorScheme.scrim,
+                    ),
+                  ),
+                ),
               ),
             ),
             const SizedBox(width: 27),

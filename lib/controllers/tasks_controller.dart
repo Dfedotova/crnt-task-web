@@ -17,7 +17,9 @@ class TasksController extends GetxController {
   // final statusFilter = ''.obs; // зачем
   final typeFilter = ''.obs;
 
-  final tasks = List.of(Get.put(ProjectsController()).projects.expand((project) => project.tasks));
+  final tasks = List.of(
+    Get.put(ProjectsController()).projects.expand((project) => project.tasks),
+  );
   final filteredTasks = <Task>[].obs;
 
   final Rx<String?> selectedProjectId = ''.obs;
@@ -64,21 +66,32 @@ class TasksController extends GetxController {
 
     final filteredByAssignee = (assigneeFilter.value.isEmpty
             ? tasks
-            : tasks.where((task) => task.responsible.toLowerCase() == assigneeFilter.value.toLowerCase()))
+            : tasks.where(
+                (task) =>
+                    task.responsible.toLowerCase() ==
+                    assigneeFilter.value.toLowerCase(),
+              ))
         .toSet();
     final filteredByType = (typeFilter.value.isEmpty
             ? tasks
-            : tasks.where((task) => task.type.toLowerCase() == typeFilter.value.toLowerCase()))
+            : tasks.where(
+                (task) =>
+                    task.type.toLowerCase() == typeFilter.value.toLowerCase(),
+              ))
         .toSet();
     final filteredByPriority = (priorityFilter.value.isEmpty
             ? tasks
-            : tasks.where((task) => task.priority == priorityToInt(priorityFilter.value)))
+            : tasks.where(
+                (task) => task.priority == priorityToInt(priorityFilter.value),
+              ))
         .toSet();
 
     filteredTasks
       ..clear()
       ..addAll(
-        filteredByAssignee.intersection(filteredByPriority).intersection(filteredByType),
+        filteredByAssignee
+            .intersection(filteredByPriority)
+            .intersection(filteredByType),
       );
     await Future.delayed(Duration(seconds: Random().nextInt(2)), () {});
     loading.value = false;
