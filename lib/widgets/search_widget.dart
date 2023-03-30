@@ -61,11 +61,14 @@ class _SearchWidgetState extends State<SearchWidget> {
             child: TextFormField(
               controller: controller,
               cursorColor: Theme.of(context).colorScheme.scrim,
-              decoration: const InputDecoration.collapsed(
+              decoration: InputDecoration.collapsed(
                 hintText: 'Поиск по задачам',
+                hintStyle: TextStyle(
+                  color: Theme.of(context).colorScheme.scrim,
+                ),
               ),
               style: TextStyle(
-                color: Theme.of(context).colorScheme.shadow,
+                color: Theme.of(context).colorScheme.scrim,
                 height: 1.2,
                 fontSize: 12,
                 fontFamily: 'Montserrat',

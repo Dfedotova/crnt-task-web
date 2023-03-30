@@ -214,4 +214,15 @@ List<Task> skillboxTasksPresentations = [
     tags: ['презентация'],
     responsible: 'Федотова Дарья',
   ),
+  Task(
+    projectId: 'SKB-13',
+    name: 'Презентация Python 2.1',
+    type: 'Сабаск',
+    deadlineDate: DateTime(2023, 4, 4),
+    deadlineTime: DateTime(0, 0, 0, 23, 59),
+    priority: 0,
+    tags: ['презентация'],
+    responsible: 'Федотова Дарья',
+    status: TaskStatus.inProgress,
+  ),
 ];

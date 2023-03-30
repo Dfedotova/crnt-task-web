@@ -21,6 +21,9 @@ class TaskCard extends StatefulWidget {
 class _TaskCardState extends State<TaskCard> {
   final createTaskController = Get.put(CreateTaskController());
   final _descriptionController = TextEditingController();
+  final _nameController = TextEditingController();
+  final _idController = TextEditingController();
+  final _tagController = TextEditingController();
 
   @override
   void initState() {
@@ -107,14 +110,86 @@ class _TaskCardState extends State<TaskCard> {
                           ],
                         ),
                         const SizedBox(height: 10),
-                        Text(
-                          '${DialogueWindows.taskOpened.projectId}: '
-                              '${DialogueWindows.taskOpened.name}',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                            color: Theme.of(context).colorScheme.primary,
-                          ),
+                        Row(
+                          children: [
+                            Container(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 13),
+                              height: 29,
+                              width: 94,
+                              decoration: BoxDecoration(
+                                color: Theme.of(context).colorScheme.outline,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: TextFormField(
+                                controller: _idController,
+                                style: TextStyle(
+                                  height: 1.2,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  fontFamily: 'Montserrat',
+                                  color: Theme.of(context).colorScheme.primary,
+                                ),
+                                cursorColor:
+                                    Theme.of(context).colorScheme.surface,
+                                cursorHeight: 20,
+                                decoration: InputDecoration.collapsed(
+                                  hintText: DialogueWindows
+                                              .taskOpened.projectId ==
+                                          'ID-1'
+                                      ? 'ID'
+                                      : '${DialogueWindows.taskOpened.projectId}',
+                                  hintStyle: TextStyle(
+                                    height: 2,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w300,
+                                    fontFamily: 'Montserrat',
+                                    color:
+                                        Theme.of(context).colorScheme.surface,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 10),
+                            Container(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 13),
+                              height: 29,
+                              width: 244,
+                              decoration: BoxDecoration(
+                                color: Theme.of(context).colorScheme.outline,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: TextFormField(
+                                controller: _nameController,
+                                style: TextStyle(
+                                  height: 1.2,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  fontFamily: 'Montserrat',
+                                  color: Theme.of(context).colorScheme.primary,
+                                ),
+                                cursorColor:
+                                    Theme.of(context).colorScheme.surface,
+                                cursorHeight: 20,
+                                decoration: InputDecoration.collapsed(
+                                  hintText:
+                                      DialogueWindows.taskOpened.projectId ==
+                                              'ID-1'
+                                          ? 'Название'
+                                          : DialogueWindows.taskOpened.name,
+                                  hintStyle: TextStyle(
+                                    height: 2,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w300,
+                                    fontFamily: 'Montserrat',
+                                    color:
+                                        Theme.of(context).colorScheme.surface,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                         const SizedBox(height: 40),
                         Row(
@@ -442,7 +517,7 @@ class _TaskCardState extends State<TaskCard> {
                             SizedBox(
                               width: 110,
                               child: Text(
-                                'Теги:',
+                                'Тег:',
                                 style: TextStyle(
                                   fontWeight: FontWeight.w300,
                                   fontSize: 14,
@@ -452,9 +527,44 @@ class _TaskCardState extends State<TaskCard> {
                               ),
                             ),
                             const SizedBox(width: 30),
-                            const ActiveSkill(skill: 'tilda'),
-                            const SizedBox(width: 20),
-                            const ActiveSkill(skill: 'figma'),
+                            Container(
+                              padding:
+                              const EdgeInsets.symmetric(horizontal: 13),
+                              height: 29,
+                              width: 215,
+                              decoration: BoxDecoration(
+                                color: Theme.of(context).colorScheme.outline,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: TextFormField(
+                                controller: _tagController,
+                                style: TextStyle(
+                                  height: 1.2,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  fontFamily: 'Montserrat',
+                                  color: Theme.of(context).colorScheme.primary,
+                                ),
+                                cursorColor:
+                                Theme.of(context).colorScheme.surface,
+                                cursorHeight: 20,
+                                decoration: InputDecoration.collapsed(
+                                  hintText: DialogueWindows
+                                      .taskOpened.tags.first ==
+                                      ''
+                                      ? 'Тег'
+                                      : DialogueWindows.taskOpened.tags.first,
+                                  hintStyle: TextStyle(
+                                    height: 2,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w300,
+                                    fontFamily: 'Montserrat',
+                                    color:
+                                    Theme.of(context).colorScheme.surface,
+                                  ),
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                         const Spacer(),
