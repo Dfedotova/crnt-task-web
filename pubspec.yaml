@@ -38,6 +38,18 @@ dependencies:
   dio: ^4.0.4
   freezed:
   freezed_annotation:
+  crnt-data-manager:
+      git:
+        url: https://github.com/Constantine27K/crnt-data-manager
+        path: pkg/crnt-data-manager
+  crnt-user-service:
+      git:
+        url: https://github.com/Constantine27K/crnt-user-service
+        path: pkg/crnt-user-service
+  crnt-auth-service:
+      git:
+        url: https://github.com/Constantine27K/crnt-auth-service
+        path: pkg/crnt-auth-service
 
 dev_dependencies:
   auto_route_generator: ^3.2.1
