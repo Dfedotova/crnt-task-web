@@ -17,6 +17,8 @@ class AnalyticsPage extends StatefulWidget {
 
 class _AnalyticsPageState extends State<AnalyticsPage> {
   final analyticsController = Get.put(AnalyticsController());
+  final TooltipBehavior _tooltipBehavior = TooltipBehavior(enable: true);
+  final RxString _chartTypeSelected = 'line'.obs;
 
   //RxBool _isEditable = false.obs;
 
@@ -73,12 +75,6 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                     .format(employees[i].earnedSalary),
               ),
             ),
-            /*DataCell(
-              GestureDetector(
-                onTap: () => _isEditable.value = !_isEditable.value,
-                child: SvgPicture.asset('assets/edit.svg'),
-              ),
-            ),*/
           ],
         ),
       );
@@ -86,7 +82,22 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
     return rows;
   }
 
-  static List<LineSeries<Employee, String>> _getDefaultData(
+  static List<PieSeries<Employee, String>> _getPieChartData(
+    List<Employee> employees,
+  ) {
+    return <PieSeries<Employee, String>>[
+      PieSeries<Employee, String>(
+        dataSource: employees,
+        xValueMapper: (employee, _) => '${employee.surname}\n${employee.name}',
+        yValueMapper: (employee, _) => employee.earnedSalary,
+        dataLabelSettings: const DataLabelSettings(isVisible: true),
+        dataLabelMapper: (employee, _) => employee.surname,
+        enableTooltip: true,
+      ),
+    ];
+  }
+
+  static List<LineSeries<Employee, String>> _getLineChartData(
     List<Employee> employees,
   ) {
     return <LineSeries<Employee, String>>[
@@ -98,6 +109,48 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
     ];
   }
 
+  static List<ChartSeries<Employee, String>> _getBarChartData(
+      List<Employee> employees,
+      ) {
+    return <ChartSeries<Employee, String>>[
+      ColumnSeries<Employee, String>(
+        dataSource: employees,
+        xValueMapper: (employee, _) => '${employee.surname}\n${employee.name}',
+        yValueMapper: (employee, _) => employee.earnedSalary,
+      ),
+    ];
+  }
+
+  Widget _chartWidget(String theme, Color color) {
+    return Chip(
+      labelPadding: const EdgeInsets.symmetric(horizontal: 15),
+      label: Text(
+        theme,
+        style: TextStyle(
+          color: Theme.of(context).colorScheme.primary,
+          fontSize: 14,
+        ),
+      ),
+      backgroundColor: color,
+    );
+  }
+
+  Widget _currentChartType(String typeRU, String typeEN){
+    return GestureDetector(
+      child: _chartWidget(
+        typeRU,
+        _chartTypeSelected.value == typeEN
+            ? Theme.of(context).colorScheme.tertiary
+            : Theme.of(context).colorScheme.shadow,
+      ),
+      onTap: () {
+        if (_chartTypeSelected.value != typeEN) {
+          _chartTypeSelected.value = typeEN;
+        }
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -107,23 +160,6 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
         children: [
           Row(
             children: [
-              /*FilterWidget(
-                title: 'Сотрудники',
-                filter: 'Все сотрудники',
-                items: getEmployees(),
-                onFilterChanged: (_) {},
-              ),
-              FilterWidget(
-                title: 'Время',
-                filter: 'Все время',
-                items: const [
-                  'Все время',
-                  'Год',
-                  'Месяц',
-                  'Неделя',
-                ],
-                onFilterChanged: (_) {},
-              ),*/
               FilterWidget(
                 title: 'Направление',
                 filter: 'Все направления',
@@ -137,6 +173,16 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                 ],
                 onFilterChanged: analyticsController.onDirectionFilterUpdated,
               ),
+              Obx(
+                () => Wrap(
+                  spacing: 10,
+                  children: [
+                    _currentChartType('линейный', 'line'),
+                    _currentChartType('круговой', 'circle'),
+                    _currentChartType('столбчатый', 'bar'),
+                  ],
+                ),
+              ),
             ],
           ),
           const SizedBox(height: 60),
@@ -149,10 +195,22 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
               } else {
                 return ListView(
                   children: [
-                    SfCartesianChart(
-                      primaryXAxis: CategoryAxis(),
-                      series: _getDefaultData(filteredEmployees),
-                    ),
+                    if (_chartTypeSelected.value == 'line') ...[
+                      SfCartesianChart(
+                        primaryXAxis: CategoryAxis(),
+                        series: _getLineChartData(filteredEmployees),
+                      )
+                    ] else if (_chartTypeSelected.value == 'circle') ...[
+                      SfCircularChart(
+                        series: _getPieChartData(filteredEmployees),
+                        tooltipBehavior: _tooltipBehavior,
+                      )
+                    ] else if (_chartTypeSelected.value == 'bar') ...[
+                      SfCartesianChart(
+                        primaryXAxis: CategoryAxis(),
+                        series: _getBarChartData(filteredEmployees),
+                      )
+                    ],
                     const SizedBox(height: 60),
                     Padding(
                       padding: const EdgeInsets.only(bottom: 50),
