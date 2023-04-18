@@ -1,4 +1,5 @@
 import 'package:crnt_task/controllers/tasks_controller.dart';
+import 'package:crnt_task/pages/tasks/gantt_board.dart';
 import 'package:crnt_task/pages/tasks/kanban_board.dart';
 import 'package:crnt_task/pages/tasks/menu_board.dart';
 import 'package:crnt_task/utils/get_employees.dart';
@@ -66,12 +67,12 @@ class _TasksPageState extends State<TasksPage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 100, top: 100),
+          padding: const EdgeInsets.only(left: 100, top: 100, right: 100),
           child: Row(
             children: [
               Container(
                 height: 45,
-                width: 100,
+                width: 130,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   color: Theme.of(context)
@@ -96,12 +97,9 @@ class _TasksPageState extends State<TasksPage> {
                         onTap: () => _viewPicked.value = 'kanban',
                         child: _viewPicked.value == 'kanban'
                             ? _activeView('kanban.svg')
-                            : Padding(
-                                padding: const EdgeInsets.only(right: 11),
-                                child: SvgPicture.asset('assets/kanban.svg'),
-                              ),
+                            : SvgPicture.asset('assets/kanban.svg'),
                       ),
-                      /*GestureDetector(
+                      GestureDetector(
                         onTap: () => _viewPicked.value = 'gantt',
                         child: _viewPicked.value == 'gantt'
                             ? _activeView('gant.svg')
@@ -109,7 +107,7 @@ class _TasksPageState extends State<TasksPage> {
                                 padding: const EdgeInsets.only(right: 12),
                                 child: SvgPicture.asset('assets/gant.svg'),
                               ),
-                      ),*/
+                      ),
                     ],
                   ),
                 ),
@@ -133,27 +131,6 @@ class _TasksPageState extends State<TasksPage> {
                 ],
                 onFilterChanged: tasksController.onPriorityFilterUpdated,
               ),
-              // FilterWidget(
-              //   title: 'Направление',
-              //   filter: 'Все направления',
-              //   items: directions,
-              //   onFilterChanged: tasksController.onDirectionFilterUpdated,
-              // ),
-              // FilterWidget(
-              //   title: 'Статус',
-              //   filter: 'Все статусы',
-              //   items: const [
-              //     'Все статусы',
-              //     'Бэклог',
-              //     'В процессе',
-              //     'Сделано',
-              //     'На проверке',
-              //     'На согласовании',
-              //     'Согласовано',
-              //     'Архив'
-              //   ],
-              //   onFilterChanged: tasksController.onStatusFilterUpdated,
-              // ),
               FilterWidget(
                 title: 'Тип задачи',
                 filter: 'Все типы',
@@ -189,8 +166,10 @@ class _TasksPageState extends State<TasksPage> {
             } else {
               if (_viewPicked.value == 'kanban') {
                 return KanbanBoard(tasks: tasks);
-              } else {
+              } else if (_viewPicked.value == 'list') {
                 return MenuBoard(tasks: tasks);
+              } else {
+                return GanttBoard(tasks: tasks);
               }
             }
           },
