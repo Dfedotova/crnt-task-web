@@ -20,14 +20,11 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
   final TooltipBehavior _tooltipBehavior = TooltipBehavior(enable: true);
   final RxString _chartTypeSelected = 'line'.obs;
 
-  //RxBool _isEditable = false.obs;
-
   List<DataColumn> columns = [
     const DataColumn(label: Text('ФИО')),
     const DataColumn(label: Text('Направление')),
     const DataColumn(label: Text('Продолжительность работы')),
     const DataColumn(label: Text('Зарплата')),
-    //const DataColumn(label: Text('')),
   ];
 
   @override
@@ -110,8 +107,8 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
   }
 
   static List<ChartSeries<Employee, String>> _getBarChartData(
-      List<Employee> employees,
-      ) {
+    List<Employee> employees,
+  ) {
     return <ChartSeries<Employee, String>>[
       ColumnSeries<Employee, String>(
         dataSource: employees,
@@ -135,7 +132,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
     );
   }
 
-  Widget _currentChartType(String typeRU, String typeEN){
+  Widget _currentChartType(String typeRU, String typeEN) {
     return GestureDetector(
       child: _chartWidget(
         typeRU,

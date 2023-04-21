@@ -4,7 +4,6 @@ import 'package:crnt_task/controllers/create_task_controller.dart';
 import 'package:crnt_task/controllers/dialogue_windows_controller.dart';
 import 'package:crnt_task/data/tasks.dart';
 import 'package:crnt_task/utils/get_employees.dart';
-import 'package:crnt_task/widgets/skills/active_skill_widget.dart';
 import 'package:crnt_task/widgets/tasks/card_filter_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -529,7 +528,7 @@ class _TaskCardState extends State<TaskCard> {
                             const SizedBox(width: 30),
                             Container(
                               padding:
-                              const EdgeInsets.symmetric(horizontal: 13),
+                                  const EdgeInsets.symmetric(horizontal: 13),
                               height: 29,
                               width: 215,
                               decoration: BoxDecoration(
@@ -546,12 +545,12 @@ class _TaskCardState extends State<TaskCard> {
                                   color: Theme.of(context).colorScheme.primary,
                                 ),
                                 cursorColor:
-                                Theme.of(context).colorScheme.surface,
+                                    Theme.of(context).colorScheme.surface,
                                 cursorHeight: 20,
                                 decoration: InputDecoration.collapsed(
                                   hintText: DialogueWindows
-                                      .taskOpened.tags.first ==
-                                      ''
+                                              .taskOpened.tags.first ==
+                                          ''
                                       ? 'Тег'
                                       : DialogueWindows.taskOpened.tags.first,
                                   hintStyle: TextStyle(
@@ -560,7 +559,7 @@ class _TaskCardState extends State<TaskCard> {
                                     fontWeight: FontWeight.w300,
                                     fontFamily: 'Montserrat',
                                     color:
-                                    Theme.of(context).colorScheme.surface,
+                                        Theme.of(context).colorScheme.surface,
                                   ),
                                 ),
                               ),

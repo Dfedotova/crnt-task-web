@@ -56,7 +56,7 @@ class _SearchWidgetState extends State<SearchWidget> {
             child: SvgPicture.asset('assets/search.svg'),
           ),
           const SizedBox(width: 8),
-          Container(
+          SizedBox(
             width: 180,
             child: TextFormField(
               controller: controller,

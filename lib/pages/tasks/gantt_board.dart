@@ -2,7 +2,6 @@ import 'package:crnt_task/models/task.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gantt_chart/gantt_chart.dart';
-import 'package:intl/intl.dart';
 
 class GanttBoard extends StatefulWidget {
   const GanttBoard({
