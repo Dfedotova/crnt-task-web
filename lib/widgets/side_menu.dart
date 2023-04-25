@@ -28,7 +28,6 @@ class _SideMenuClosedState extends State<StatefulWidget> {
           width: 40,
           height: 40,
           child: CircleAvatar(
-            //backgroundImage: AssetImage('assets/example_photo.jpeg'),
             backgroundColor: Theme.of(context).colorScheme.tertiary,
             child: Align(
               child: Text(
@@ -125,6 +124,17 @@ class _SideMenuClosedState extends State<StatefulWidget> {
                     count: openedRoute.value,
                     name: 'Settings',
                   ),
+                  const SizedBox(height: 10),
+                  Element(
+                    check: 4,
+                    onPressed: () {
+                      setState(() {
+                        openedRoute.value = 4;
+                      });
+                    },
+                    count: openedRoute.value,
+                    name: 'Chats',
+                  ),
                   const Spacer(),
                   Obx(
                     () => !DialogueWindows.isMenuOpened.value
@@ -186,6 +196,7 @@ class ElementState extends State<Element> {
     const InactiveCircleButton(image: 'task.svg'),
     const InactiveCircleButton(image: 'graph.svg'),
     const InactiveCircleButton(image: 'settings.svg'),
+    const InactiveCircleButton(image: 'chats.svg'),
   ];
 
   List activeButtons = [
@@ -193,6 +204,7 @@ class ElementState extends State<Element> {
     const ActiveCircleButton(image: 'task.svg'),
     const ActiveCircleButton(image: 'graph.svg'),
     const ActiveCircleButton(image: 'settings.svg'),
+    const ActiveCircleButton(image: 'chats.svg'),
   ];
 
   List inactiveButtonsOpened = [
@@ -244,6 +256,20 @@ class ElementState extends State<Element> {
         SizedBox(width: 20),
         Text(
           'Настройки',
+          style: TextStyle(
+            height: 1.2,
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ],
+    ),
+    Row(
+      children: const [
+        InactiveCircleButton(image: 'chats.svg'),
+        SizedBox(width: 20),
+        Text(
+          'Чаты',
           style: TextStyle(
             height: 1.2,
             fontSize: 14,
@@ -311,6 +337,20 @@ class ElementState extends State<Element> {
         ),
       ],
     ),
+    Row(
+      children: const [
+        ActiveCircleButton(image: 'chats.svg'),
+        SizedBox(width: 20),
+        Text(
+          'Чаты',
+          style: TextStyle(
+            height: 1.2,
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ],
+    ),
   ];
 
   List routes = [
@@ -318,6 +358,7 @@ class ElementState extends State<Element> {
     TasksRoute,
     AnalyticsRoute,
     SettingsRoute,
+    ChatRoute,
   ];
 
   @override

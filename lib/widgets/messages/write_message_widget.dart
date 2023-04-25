@@ -4,40 +4,40 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-class SearchWidget extends StatefulWidget {
-  const SearchWidget({Key? key}) : super(key: key);
+class WriteMessageWidget extends StatefulWidget {
+  const WriteMessageWidget({Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _SearchWidgetState();
+  State<StatefulWidget> createState() => _WriteMessageWidgetState();
 }
 
-class _SearchWidgetState extends State<SearchWidget> {
+class _WriteMessageWidgetState extends State<WriteMessageWidget> {
   final TextEditingController controller = TextEditingController();
-  final tasksController = Get.put(TasksController());
+  //final tasksController = Get.put(TasksController());
 
   @override
   void initState() {
     super.initState();
-    SchedulerBinding.instance.addPostFrameCallback((_) {
+    /*SchedulerBinding.instance.addPostFrameCallback((_) {
       tasksController.filteredTasks
         ..clear()
         ..addAll(tasksController.tasks);
-    });
+    });*/
   }
 
-  @override
+  /*@override
   void didChangeDependencies() {
     super.didChangeDependencies();
     SchedulerBinding.instance.addPostFrameCallback((_) {
       tasksController.loadAllTasks();
     });
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 30,
-      width: 270,
+      width: double.infinity,
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.secondaryContainer,
         borderRadius: BorderRadius.circular(50),
@@ -51,18 +51,14 @@ class _SearchWidgetState extends State<SearchWidget> {
       ),
       child: Row(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 9),
-            child: SvgPicture.asset('assets/search.svg'),
-          ),
-          const SizedBox(width: 8),
+          const SizedBox(width: 12),
           SizedBox(
             width: 180,
             child: TextFormField(
               controller: controller,
               cursorColor: Theme.of(context).colorScheme.scrim,
               decoration: InputDecoration.collapsed(
-                hintText: 'Поиск по задачам',
+                hintText: 'Напишите сообщение...',
                 hintStyle: TextStyle(
                   color: Theme.of(context).colorScheme.scrim,
                 ),
@@ -73,7 +69,7 @@ class _SearchWidgetState extends State<SearchWidget> {
                 fontSize: 12,
                 fontFamily: 'Montserrat',
               ),
-              onChanged: tasksController.onNameSearchUpdates,
+              //onChanged: tasksController.onNameSearchUpdates,
             ),
           ),
         ],

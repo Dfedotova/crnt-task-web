@@ -1,6 +1,7 @@
 import 'package:crnt_task/navigation/route_names.dart';
 import 'package:crnt_task/pages/analytics_page.dart';
 import 'package:crnt_task/pages/auth_page.dart';
+import 'package:crnt_task/pages/chats_page.dart';
 import 'package:crnt_task/pages/home_page.dart';
 import 'package:crnt_task/pages/layout_template.dart';
 import 'package:crnt_task/pages/main_page.dart';
@@ -22,6 +23,8 @@ Route<dynamic>? generateRoute(RouteSettings settings) {
       return _getPageRoute(const TasksPage(), settings);
     case AnalyticsRoute:
       return _getPageRoute(const AnalyticsPage(), settings);
+    case ChatRoute:
+      return _getPageRoute(const ChatsPage(), settings);
     default:
   }
   return null;
