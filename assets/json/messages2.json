@@ -1,0 +1,74 @@
+[
+  {
+    "author": {
+      "firstName": "Федотова",
+      "id": "82091008-a484-4a89-ae75-a22bf8d6f3ac",
+      "lastName": "Дарья"
+    },
+    "createdAt": 1655624463000,
+    "id": "113bb2e8-f74e-42cd-aa30-4085a0f52c52",
+    "status": "seen",
+    "text": "разработчик отвалился?",
+    "type": "text"
+  },
+  {
+    "author": {
+      "firstName": "Федотова",
+      "id": "82091008-a484-4a89-ae75-a22bf8d6f3ac",
+      "lastName": "Дарья"
+    },
+    "createdAt": 1655624463000,
+    "id": "113bb2e8-f74e-42cd-aa30-4085a0f52c57",
+    "status": "seen",
+    "text": "в чем там проблема?",
+    "type": "text"
+  },
+  {
+    "author": {
+      "firstName": "Иванов",
+      "id": "4c2307ba-3d40-442f-b1ff-b272f63904ca",
+      "lastName": "Олег"
+    },
+    "createdAt": 1655624464000,
+    "id": "38681a33-2563-42aa-957b-cfc12f741d19",
+    "status": "seen",
+    "text": "Проект по лендингу стопнулся",
+    "type": "text"
+  },
+  {
+    "author": {
+      "firstName": "Федоров",
+      "id": "82091008-a484-4a89-ae75-a22bf8d6f3a3",
+      "lastName": "Александр"
+    },
+    "createdAt": 1655624463000,
+    "id": "113bb2e8-f74e-42cd-aa30-4085a0f52c39",
+    "status": "seen",
+    "text": "Есть сейчас насущные проблемы?",
+    "type": "text"
+  },
+  {
+    "author": {
+      "firstName": "Федотова",
+      "id": "82091008-a484-4a89-ae75-a22bf8d6f3ac",
+      "lastName": "Дарья"
+    },
+    "createdAt": 1655624463000,
+    "id": "113bb2e8-f74e-42cd-aa30-4085a0f53c58",
+    "status": "seen",
+    "text": "окей",
+    "type": "text"
+  },
+  {
+    "author": {
+      "firstName": "Смирнов",
+      "id": "4c2307ba-3d40-442f-b1ff-b271f63904ca",
+      "lastName": "Никита"
+    },
+    "createdAt": 1655624460000,
+    "id": "634b2f0b-2486-4bfe-b36d-1c7d6333c7b3",
+    "status": "seen",
+    "text": "тут будем обсуждать менеджерские моменты",
+    "type": "text"
+  }
+]

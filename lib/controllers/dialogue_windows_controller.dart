@@ -11,4 +11,6 @@ class DialogueWindows {
   static RxBool isProjectCardOpened = false.obs;
 
   static RxBool isMenuOpened = false.obs;
+
+  static RxBool isUserPageOpened = false.obs;
 }
