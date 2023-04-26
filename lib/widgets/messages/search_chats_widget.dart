@@ -1,4 +1,5 @@
-import 'package:crnt_task/controllers/tasks_controller.dart';
+import 'package:crnt_task/controllers/chat_controller.dart';
+import 'package:crnt_task/data/chats.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -12,26 +13,26 @@ class SearchChatsWidget extends StatefulWidget {
 }
 
 class _SearchChatsWidgetState extends State<SearchChatsWidget> {
+  final chatController = Get.put(ChatController());
   final TextEditingController controller = TextEditingController();
-  //final tasksController = Get.put(TasksController());
 
   @override
   void initState() {
     super.initState();
-    /*SchedulerBinding.instance.addPostFrameCallback((_) {
-      tasksController.filteredTasks
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      chatController.filteredChats
         ..clear()
-        ..addAll(tasksController.tasks);
-    });*/
+        ..addAll(allChats);
+    });
   }
 
-  /*@override
+  @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     SchedulerBinding.instance.addPostFrameCallback((_) {
-      tasksController.loadAllTasks();
+      chatController.loadAllChats();
     });
-  }*/
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +74,7 @@ class _SearchChatsWidgetState extends State<SearchChatsWidget> {
                 fontSize: 12,
                 fontFamily: 'Montserrat',
               ),
-              //onChanged: tasksController.onNameSearchUpdates,
+              onChanged: chatController.onNameSearchUpdates,
             ),
           ),
         ],
