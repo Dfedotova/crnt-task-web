@@ -1,5 +1,6 @@
 import 'package:crnt_task/controllers/dialogue_windows_controller.dart';
 import 'package:crnt_task/widgets/header.dart';
+import 'package:crnt_task/widgets/messages/create_chat_widget.dart';
 import 'package:crnt_task/widgets/notifications.dart';
 import 'package:crnt_task/widgets/projects/new_project_card_widget.dart';
 import 'package:crnt_task/widgets/side_menu.dart';
@@ -25,7 +26,9 @@ class LayoutTemplate extends StatelessWidget {
             const HeaderWidget(),
             if (DialogueWindows.isNotificationsOpened.value ||
                 DialogueWindows.isCardOpened.value ||
-                DialogueWindows.isProjectCardOpened.value)
+                DialogueWindows.isProjectCardOpened.value ||
+                DialogueWindows.isChatSelectionOpened.value
+            )
               Opacity(
                 opacity: 0.4,
                 child: ModalBarrier(
@@ -38,6 +41,8 @@ class LayoutTemplate extends StatelessWidget {
             if (DialogueWindows.isCardOpened.value) const TaskCard(),
             if (DialogueWindows.isProjectCardOpened.value)
               const NewProjectCard(),
+            if (DialogueWindows.isChatSelectionOpened.value)
+              const ChatCreation(),
           ],
         ),
       ),

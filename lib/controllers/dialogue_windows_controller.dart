@@ -13,4 +13,7 @@ class DialogueWindows {
   static RxBool isMenuOpened = false.obs;
 
   static RxBool isUserPageOpened = false.obs;
+
+  static RxBool isChatSelectionOpened = false.obs;
+  static RxBool newChatCreated = false.obs;
 }
